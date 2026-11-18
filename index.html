@@ -5,335 +5,107 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lausitzer Quartier – Wohnen in Berlin-Kreuzberg</title>
 <meta name="description" content="Lausitzer Quartier in Berlin-Kreuzberg: zwei Gründerzeit-Altbauten, eine denkmalgeschützte Fabrik und ein Neubau im privaten Innenhof. Provisionsfrei direkt vom Projektentwickler, der Tiedemann Gruppe.">
-<meta name="theme-color" content="#2b2725">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="stylesheet" href="assets/lq.css">
 <style>
-:root {
-  /* Palette aus den Projektillustrationen: Backstein, Kanalgrün, Papier, Tusche */
-  --ink:      #2b2725;
-  --ink-2:    #3a3532;
-  --paper:    #f4f1ec;
-  --paper-2:  #e9e4dc;
-  --white:    #fbfaf7;
-  --brick:    #8c4a3a;
-  --brick-dk: #713a2d;
-  --brick-lt: #d7a08a;
-  --sage:     #5c6b52;
-  --sage-lt:  #b9c4a8;
-  --muted:    #625d56;
-  --muted-inv: #a8a29a;
-  --rule:     rgba(43,39,37,.14);
-  --rule-inv: rgba(251,250,247,.16);
-  --g:   clamp(1rem, 5vw, 4.5rem);
-  --max: 1320px;
-  --sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  /* Typo-Skala nach Tiedemann Design System */
-  --fs-display: clamp(40px, 4.4vw, 64px);
-  --fs-h1: clamp(28px, 2.9vw, 40px);
-  --fs-h2: 20px;
-  --fs-body: 15px;
-  --fs-lead: 17px;
-  --fs-small: 13px;
-  --fs-label: 11px;
-  --fs-button: 14px;
-  --ease: cubic-bezier(.2,.7,.2,1);
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-body { font-family: var(--sans); font-weight: 400; color: var(--ink); background: var(--white); font-size: var(--fs-body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-button, input, select, textarea { font: inherit; color: inherit; }
-h1, h2, h3, h4 { font-family: var(--sans); font-weight: 300; line-height: 1.2; letter-spacing: 0; }
-h2 { font-size: var(--fs-h1); }
-h3 { font-size: var(--fs-h2); line-height: 1.3; }
-h1 em, h2 em, h3 em, h4 em, .statement em, blockquote em, .logo-txt em { font-style: normal; font-weight: 600; }
-em, i, cite { font-style: normal; } b, strong { font-weight: 600; }
-.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--g); }
-.label { display: inline-flex; align-items: center; gap: .7rem; font-size: var(--fs-label); font-weight: 600; line-height: 1.4; letter-spacing: .14em; text-transform: uppercase; color: var(--brick); }
-.label::before { content: ''; width: 1.6rem; height: 1px; background: currentColor; flex-shrink: 0; }
-.lead { font-size: var(--fs-lead); color: var(--muted); max-width: 62ch; line-height: 1.6; }
-p.lead + p.lead { margin-top: 1rem; }
-section { padding-block: clamp(4.5rem, 11vw, 9rem); }
-.paper { background: var(--paper); }
-.dark { background: var(--ink); color: var(--white); }
-.dark .lead { color: rgba(251,250,247,.78); }
-.dark .label { color: var(--brick-lt); }
-.caption { font-size: var(--fs-small); line-height: 1.5; color: var(--muted); margin-top: .8rem; }
-.dark .caption { color: var(--muted-inv); }
-.sketch { mix-blend-mode: multiply; }
+/* Startseite */
+.hero { padding-block: clamp(40px, 6vw, 88px) 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.hero h1 { max-width: 12ch; }
+.hero .lead { margin-top: 24px; max-width: 48ch; }
+.hero-img img { width: 100%; height: auto; mix-blend-mode: multiply; }
+.hero-img figcaption { margin-top: 6px; text-align: right; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
 
-/* Buttons & Links */
-.btn { display: inline-flex; align-items: center; gap: .8rem; font-size: var(--fs-button); font-weight: 600; line-height: 1; padding: 1rem 1.6rem; border: 1px solid transparent; border-radius: 0; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
-.btn .arr { transition: transform .25s var(--ease); }
-.btn:hover .arr { transform: translateX(4px); }
-.btn-brick { background: var(--brick); color: #fff; }
-.btn-brick:hover { background: var(--brick-dk); }
-.btn-ink { background: var(--ink); color: var(--white); }
-.btn-ink:hover { background: var(--brick); }
-.btn-line { border-color: var(--ink); color: var(--ink); background: none; }
-.btn-line:hover { background: var(--ink); color: var(--white); }
-.btn-inv { background: var(--white); color: var(--ink); }
-.btn-inv:hover { background: var(--brick-lt); }
-.btn-ghost { border-color: rgba(251,250,247,.45); color: var(--white); background: none; }
-.btn-ghost:hover { background: rgba(251,250,247,.1); }
-.tlink { display: inline-flex; align-items: center; gap: .6rem; font-size: var(--fs-button); font-weight: 600; border-bottom: 1px solid currentColor; padding-bottom: .2rem; transition: gap .25s var(--ease), color .2s; }
-.tlink:hover { gap: 1rem; color: var(--brick); }
-.dark .tlink:hover { color: var(--brick-lt); }
-
-/* NAV */
-.nav { position: fixed; inset: 0 0 auto; z-index: 80; color: var(--ink); transition: background .35s, box-shadow .35s; }
-.nav.solid { background: rgba(251,250,247,.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--rule); }
-.nav-in { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-.logo img { height: 22px; width: auto; }
-.nav ul { display: flex; gap: 2rem; list-style: none; font-size: var(--fs-button); }
-.nav ul a { color: var(--muted); transition: color .2s; }
-.nav ul a:hover { color: var(--ink); }
-.nav ul a.hl { color: var(--brick); font-weight: 600; }
-.nav .btn { padding: .65rem 1.1rem; font-size: var(--fs-small); }
-@media (max-width: 980px) { .nav ul { display: none; } }
-@media (max-width: 400px) { .logo img { height: 17px; } .nav .btn { padding: .6rem .8rem; } }
-
-/* HERO */
-.hero { position: relative; background: var(--paper); padding: 0; overflow: hidden; }
-.hero-in { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; padding-top: 72px; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding-block: clamp(2rem, 5vw, 4rem); }
-.hero h1 { font-size: var(--fs-display); line-height: 1.05; margin-top: 1.4rem; max-width: 12ch; }
-.hero h1 em { color: var(--brick); }
-.hero-text .lead { margin-top: 1.6rem; max-width: 48ch; }
-.hero-cta { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
-.hero-img { position: relative; }
-.hero-img img { width: 100%; height: auto; }
-.hero-img figcaption { font-size: var(--fs-small); color: var(--muted); margin-top: .4rem; text-align: right; }
-.hero-facts { border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.hero-facts > div { padding: 1.3rem 1.2rem 1.6rem 0; }
-.hero-facts > div + div { padding-left: 1.2rem; border-left: 1px solid var(--rule); }
-.hero-facts b { display: block; font-weight: 300; font-size: clamp(20px, 2vw, 28px); line-height: 1.2; }
-.hero-facts span { display: block; font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .5rem; }
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-img { order: 2; }
-  .hero-facts { grid-template-columns: 1fr 1fr; }
-  .hero-facts > div, .hero-facts > div + div { padding: 1.1rem 1rem 1.1rem 0; border-left: 0; border-bottom: 1px solid var(--rule); }
-  .hero-facts > div:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--rule); }
-  .hero-facts > div:last-child { grid-column: span 2; border-bottom: 0; }
-}
-
-/* INTRO */
-.statement { font-size: var(--fs-h1); font-weight: 300; line-height: 1.2; max-width: 22ch; margin-top: 1.4rem; }
-.intro-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(2.5rem, 7vw, 7rem); align-items: end; }
-.ensemble { margin-top: clamp(3rem, 7vw, 5.5rem); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); counter-reset: e; }
-.ensemble div { counter-increment: e; padding: 1.4rem 1.4rem 1.4rem 0; }
-.ensemble div + div { padding-left: 1.4rem; border-left: 1px solid var(--rule); }
-.ensemble div::before { content: '0' counter(e); display: block; font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; color: var(--brick); }
-.ensemble h3 { margin-top: .9rem; }
-.ensemble p { font-size: var(--fs-small); color: var(--muted); margin-top: .4rem; }
+.statement { max-width: 20ch; }
+.ensemble { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(48px, 7vw, 88px); border-top: 1px solid var(--rule); }
+.ensemble div { padding: 20px 20px 20px 0; }
+.ensemble div + div { padding-left: 20px; border-left: 1px solid var(--rule); }
+.ensemble p { font-size: var(--fs-small); line-height: 1.5; color: var(--muted); margin-top: 6px; }
 @media (max-width: 860px) {
-  .intro-grid { grid-template-columns: 1fr; }
   .ensemble { grid-template-columns: 1fr 1fr; }
-  .ensemble div, .ensemble div + div { padding: 1.2rem 1rem 1.2rem 0; border-left: 0; border-bottom: 1px solid var(--rule); }
-  .ensemble div:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--rule); }
+  .ensemble div, .ensemble div + div { padding: 16px 12px 16px 0; border-left: 0; border-bottom: 1px solid var(--rule); }
+  .ensemble div:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--rule); }
 }
 
-/* GEBÄUDE / TABS */
-.sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
-.sec-head h2 { margin-top: 1.2rem; max-width: 16ch; }
-.tabs { display: flex; gap: .4rem; padding: .35rem; background: var(--paper-2); overflow-x: auto; scrollbar-width: none; max-width: 100%; }
-.tabs::-webkit-scrollbar { display: none; }
-.tab { flex-shrink: 0; background: none; border: 0; border-radius: 0; padding: .75rem 1.3rem; font-size: var(--fs-button); font-weight: 600; cursor: pointer; color: var(--muted); transition: background .25s, color .25s; white-space: nowrap; }
-.tab:hover { color: var(--ink); }
-.tab[aria-selected="true"] { background: var(--ink); color: var(--white); }
-.tab small { font-weight: 400; font-size: var(--fs-small); opacity: .75; margin-left: .4rem; }
-.unit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; animation: fade .5s var(--ease); }
-.unit[hidden] { display: none; }
-@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-.unit-tag { display: inline-block; font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: .4rem .8rem; border-radius: 0; background: rgba(140,74,58,.1); color: var(--brick); }
-.unit-tag.sold { background: var(--ink); color: var(--white); }
-.unit-tag.sage { background: rgba(92,107,82,.12); color: var(--sage); }
-.unit h3 { font-size: var(--fs-h1); line-height: 1.2; margin-top: 1.2rem; }
-.unit .txt { margin-top: 1rem; color: var(--muted); max-width: 52ch; }
-.kpis { display: grid; grid-template-columns: 1fr 1fr; margin-top: 2rem; border-top: 1px solid var(--rule); }
-.kpis div { padding: 1.1rem 0; border-bottom: 1px solid var(--rule); }
-.kpis div:nth-child(odd) { padding-right: 1rem; border-right: 1px solid var(--rule); }
-.kpis div:nth-child(even) { padding-left: 1.2rem; }
-.kpis b { display: block; font-weight: 300; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2; }
-.kpis span { display: block; font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
-.feat { list-style: none; margin-top: 1.6rem; }
-.feat li { padding: .6rem 0 .6rem 1.6rem; position: relative; border-bottom: 1px dashed var(--rule); }
-.feat li::before { content: ''; position: absolute; left: 0; top: 1.25rem; width: .55rem; height: 1px; background: var(--brick); }
-.unit .actions { margin-top: 2rem; display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
-.plate { background: #fff; border: 1px solid var(--rule); padding: clamp(.8rem, 2.5vw, 2rem); position: relative; cursor: zoom-in; }
-.plate img { width: 100%; height: auto; }
-.plate-zoom { position: absolute; top: 1rem; right: 1rem; width: 2.6rem; height: 2.6rem; border-radius: 0; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 1.1rem; opacity: .85; transition: opacity .2s; }
-.plate:hover .plate-zoom { opacity: 1; }
-.plate-meta { display: flex; justify-content: space-between; gap: 1rem; font-size: var(--fs-small); color: var(--muted); margin-top: .9rem; flex-wrap: wrap; }
-.compare { margin-top: clamp(3rem, 6vw, 5rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
-.compare button { text-align: left; background: none; border: 0; border-radius: 0; border-right: 1px solid var(--rule); padding: 1.4rem 1.4rem 1.4rem 0; cursor: pointer; transition: background .2s; }
-.compare button + button { padding-left: 1.4rem; }
-.compare button:last-child { border-right: 0; }
-.compare button:hover { background: rgba(140,74,58,.05); }
-.compare button.on .c-name { color: var(--brick); }
-.c-name { font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
-.c-size { font-weight: 300; font-size: var(--fs-h1); line-height: 1.2; margin-top: .4rem; }
+.unit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.unit h3 { font-size: var(--fs-h1); line-height: 1.2; }
+.unit .text { margin-top: 16px; }
+@media (max-width: 900px) { .unit { grid-template-columns: 1fr; } .unit > div:last-child { order: -1; } }
+
+.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(48px, 6vw, 80px); border-top: 1px solid var(--rule); }
+.compare button { text-align: left; background: none; border: 0; padding: 20px 20px 20px 0; cursor: pointer; }
+.compare button + button { padding-left: 20px; border-left: 1px solid var(--rule); }
+.compare button[aria-pressed="true"] .meta { color: var(--accent); }
+.compare button:hover .c-size { color: var(--accent); }
+.c-size, .c-sub { display: block; }
+.c-size { font-weight: 300; font-size: var(--fs-h1); line-height: 1.2; margin-top: 6px; transition: color .2s; }
 .c-sub { font-size: var(--fs-small); color: var(--muted); }
 @media (max-width: 900px) {
-  .unit { grid-template-columns: 1fr; }
-  .unit > div:last-child { order: -1; }
   .compare { grid-template-columns: 1fr; }
-  .compare button, .compare button + button { border-right: 0; border-bottom: 1px solid var(--rule); padding: 1.1rem 0; }
+  .compare button, .compare button + button { padding: 16px 0; border-left: 0; border-bottom: 1px solid var(--rule); }
 }
 
-/* FABRIK SPOTLIGHT */
-.fab { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
-.fab h2 { margin-top: 1.2rem; max-width: 16ch; }
-.fab .lead { margin-top: 1.4rem; }
-.fab-img { background: var(--white); padding: clamp(.8rem, 2vw, 1.6rem); cursor: zoom-in; position: relative; }
+.fab-img { background: #fff; border: 1px solid var(--rule); padding: clamp(12px, 2vw, 24px); cursor: zoom-in; }
 .fab-img img { width: 100%; height: auto; }
-.units-list { margin-top: 2.2rem; border-top: 1px solid var(--rule-inv); }
-.units-list li { list-style: none; display: grid; grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr); gap: 1rem; align-items: baseline; padding: .95rem 0; border-bottom: 1px solid var(--rule-inv); }
+.units-list { list-style: none; margin-top: 32px; border-top: 1px solid var(--rule); }
+.units-list li { display: grid; grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); }
 .units-list .u { font-weight: 600; }
-.units-list .u small { display: block; font-weight: 400; font-size: var(--fs-small); color: var(--muted-inv); }
+.units-list .u small { display: block; font-weight: 400; font-size: var(--fs-small); color: var(--muted); }
 .units-list .s { font-weight: 300; font-size: var(--fs-h2); }
-.units-list .p { font-size: var(--fs-small); color: var(--muted-inv); text-align: right; }
-.fab .actions { margin-top: 2.2rem; display: flex; gap: .8rem; flex-wrap: wrap; }
-@media (max-width: 900px) { .fab { grid-template-columns: 1fr; } }
+.units-list .p { font-size: var(--fs-small); color: var(--muted); text-align: right; }
 
-/* LEBENSRAUM */
-.life { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
-.life h2 { margin-top: 1.2rem; }
-.life .lead { margin-top: 1.4rem; }
-.life-facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); }
-.life-facts div { padding: 1.4rem 1.2rem 1.4rem 0; border-bottom: 1px solid var(--rule); }
-.life-facts div:nth-child(even) { padding-left: 1.2rem; border-left: 1px solid var(--rule); }
+.life-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; border-top: 1px solid var(--rule); }
+.life-facts div { padding: 18px 0; border-bottom: 1px solid var(--rule); }
 .life-facts b { display: block; font-weight: 600; font-size: var(--fs-h2); line-height: 1.3; }
-.life-facts span { display: block; font-size: var(--fs-small); color: var(--muted); margin-top: .4rem; }
-@media (max-width: 860px) { .life { grid-template-columns: 1fr; } }
-@media (max-width: 480px) { .life-facts { grid-template-columns: 1fr; } .life-facts div:nth-child(even) { padding-left: 0; border-left: 0; } }
+.life-facts span { display: block; font-size: var(--fs-small); line-height: 1.5; color: var(--muted); margin-top: 4px; }
+@media (max-width: 480px) { .life-facts { grid-template-columns: 1fr; } }
 
-/* GALERIE RAIL */
 .view { padding-bottom: 0; }
-.rail { display: flex; gap: clamp(.6rem, 1.2vw, 1rem); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: clamp(2.5rem, 5vw, 4rem) var(--g) clamp(4.5rem, 11vw, 9rem); }
+.rail-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: clamp(40px, 5vw, 56px) var(--g) var(--sec); }
 .rail::-webkit-scrollbar { display: none; }
-.rail figure { flex: 0 0 auto; scroll-snap-align: start; height: clamp(260px, 50vh, 500px); max-width: calc(100vw - 2 * var(--g)); overflow: hidden; cursor: zoom-in; position: relative; background: #fff; }
+.rail figure { flex: 0 0 auto; scroll-snap-align: start; cursor: zoom-in; max-width: calc(100vw - 2 * var(--g)); }
+.rail .ph { height: clamp(260px, 50vh, 480px); overflow: hidden; background: #fff; }
 .rail img { height: 100%; width: auto; max-width: none; object-fit: cover; transition: transform 1.2s var(--ease); }
-.rail figure:hover img { transform: scale(1.03); }
-.rail figcaption { position: absolute; left: .8rem; bottom: .8rem; font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: rgba(43,39,37,.78); color: var(--white); padding: .35rem .7rem; }
-.rail-ctrl { display: flex; gap: .5rem; }
-.rail-ctrl button { width: 3rem; height: 3rem; border-radius: 0; border: 1px solid var(--rule); background: none; cursor: pointer; font-size: 1rem; transition: background .2s, color .2s; }
-.rail-ctrl button:hover { background: var(--ink); color: var(--white); }
-@media (max-width: 520px) { .rail figure { height: auto; width: calc(100vw - 2 * var(--g)); aspect-ratio: 4/5; } .rail img { width: 100%; height: 100%; } }
+.rail figure:hover img { transform: scale(1.02); }
+.rail figcaption { margin-top: 10px; }
+.rail-ctrl { display: flex; gap: 8px; }
+.rail-ctrl button { width: 44px; height: 44px; border: 1px solid var(--rule-2); background: none; cursor: pointer; font-size: 16px; transition: border-color .2s, color .2s; }
+.rail-ctrl button:hover { border-color: var(--ink); color: var(--accent); }
+@media (max-width: 520px) { .rail figure { width: calc(100vw - 2 * var(--g)); } .rail .ph { height: auto; aspect-ratio: 4 / 5; } .rail img { width: 100%; height: 100%; } }
 
-/* LAGE */
-.loc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); padding: 0; }
-.loc-img { overflow: hidden; min-height: 100%; }
-.loc-img img { width: 100%; height: 100%; object-fit: cover; }
-.loc-text { padding: clamp(4rem, 9vw, 8rem) var(--g); }
-.loc-text h2 { margin-top: 1.2rem; max-width: 18ch; }
-.loc-text .lead { margin-top: 1.6rem; }
-.poi { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; border-top: 1px solid var(--rule-inv); padding-top: 1.6rem; }
-.poi h3 { font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sage-lt); }
-.poi ul { list-style: none; margin-top: .8rem; }
-.poi li { font-size: var(--fs-body); padding: .3rem 0; color: rgba(251,250,247,.88); }
-.addr { margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid var(--rule-inv); font-size: var(--fs-small); color: var(--muted-inv); }
-.loc-quote { margin-top: 2.6rem; font-size: var(--fs-h2); font-weight: 300; line-height: 1.3; max-width: 40ch; padding-left: 1.2rem; border-left: 1px solid var(--brick-lt); }
-@media (max-width: 860px) { .loc { grid-template-columns: 1fr; } .loc-img { aspect-ratio: 4/5; max-height: 70vh; } }
+.loc-img img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; max-height: 80vh; }
+.poi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); }
+.poi ul { list-style: none; margin-top: 10px; }
+.poi li { padding: 3px 0; }
+.loc-quote { margin-top: 40px; font-size: var(--fs-h2); font-weight: 300; line-height: 1.3; max-width: 40ch; padding-left: 18px; border-left: 1px solid var(--rule-2); }
+.addr { margin-top: 32px; }
 @media (max-width: 560px) { .poi { grid-template-columns: 1fr 1fr; } }
 
-/* ENTWICKLER */
-.dev { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(2rem, 7vw, 7rem); align-items: start; }
-.dev-logo { width: clamp(90px, 12vw, 150px); }
-.dev h2 { margin-top: 1.2rem; max-width: 26ch; }
-.dev .lead { margin-top: 1.4rem; }
-.dev .tlink { margin-top: 2rem; }
-@media (max-width: 700px) { .dev { grid-template-columns: 1fr; } .dev-logo { width: 80px; } }
-
-/* KONTAKT */
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
-.contact h2 { margin-top: 1.2rem; }
-.contact .lead { margin-top: 1.4rem; }
-.cards { margin-top: 2.5rem; display: grid; gap: .6rem; }
-.cards a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.3rem; background: var(--white); border: 1px solid var(--rule); transition: border-color .2s; flex-wrap: wrap; }
-.cards a:hover { border-color: var(--brick); }
-.cards span { font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.cards b { font-weight: 400; font-size: var(--fs-body); overflow-wrap: anywhere; }
-form { background: var(--white); padding: clamp(1.25rem, 4vw, 3rem); border: 1px solid var(--rule); }
-.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-.f { margin-bottom: 1.5rem; }
-.f > label, .f > .flabel { display: block; font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .45rem; }
-.f input, .f textarea, .f select { width: 100%; font-size: var(--fs-body); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; padding: .6rem 0; transition: border-color .2s; }
-.f select { appearance: none; -webkit-appearance: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232b2725' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat right .2rem center; padding-right: 1.6rem; cursor: pointer; }
-.f input:focus, .f textarea:focus, .f select:focus { outline: none; border-color: var(--brick); box-shadow: 0 1px 0 var(--brick); }
-.f textarea { min-height: 120px; resize: vertical; }
-fieldset { border: 0; min-width: 0; }
-legend { font-size: var(--fs-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; padding: 0; }
-.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-.chips label { position: relative; font-size: var(--fs-small); color: var(--ink); }
-.chips input { position: absolute; opacity: 0; pointer-events: none; }
-.chips span { display: inline-block; padding: .55rem 1rem; border: 1px solid var(--rule); border-radius: 0; cursor: pointer; transition: .2s; }
-.chips label:hover span { border-color: var(--ink); }
-.chips input:checked + span { background: var(--ink); color: var(--white); border-color: var(--ink); }
-.chips input:focus-visible + span { outline: 2px solid var(--brick); outline-offset: 2px; }
-.consent { display: flex; gap: .8rem; align-items: flex-start; font-size: var(--fs-small); color: var(--muted); margin-bottom: 1.6rem; }
-.consent input { margin-top: .25rem; accent-color: var(--brick); flex-shrink: 0; }
-.consent a { color: var(--ink); border-bottom: 1px solid currentColor; }
-@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
-@media (max-width: 520px) { .f-row { grid-template-columns: 1fr; gap: 0; } }
-
-/* FOOTER */
-footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-small); }
-.foot-big { font-weight: 300; font-size: clamp(40px, 9vw, 120px); line-height: 1.05; color: var(--white); padding-block: clamp(3rem, 7vw, 5rem) 2rem; overflow-wrap: anywhere; }
-.foot-big b { font-weight: 600; }
-.foot { display: flex; justify-content: space-between; gap: 1rem 1.5rem; flex-wrap: wrap; padding-block: 2rem; border-top: 1px solid var(--rule-inv); }
-.foot nav { display: flex; gap: .4rem 1.4rem; flex-wrap: wrap; }
-.foot a:hover { color: var(--white); }
-
-/* LIGHTBOX */
-.lb { position: fixed; inset: 0; z-index: 200; background: rgba(24,21,19,.95); display: grid; place-items: center; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; padding: 4.5rem 1rem 2rem; }
-.lb.open { opacity: 1; visibility: visible; transition: opacity .3s, visibility 0s; }
-.lb figure { max-width: min(94vw, 1400px); }
-.lb img { max-width: 100%; max-height: 78svh; object-fit: contain; margin-inline: auto; }
-.lb p { color: rgba(255,255,255,.72); font-size: var(--fs-small); text-align: center; margin-top: 1rem; }
-.lb-btn { position: absolute; width: 3rem; height: 3rem; border-radius: 0; border: 1px solid rgba(255,255,255,.35); background: none; color: #fff; font-size: 1.2rem; cursor: pointer; }
-.lb-btn:hover { background: rgba(255,255,255,.12); }
-.lb-x { top: 1.2rem; right: 1.2rem; font-size: 1.4rem; }
-.lb-prev { top: 50%; left: 1rem; transform: translateY(-50%); }
-.lb-next { top: 50%; right: 1rem; transform: translateY(-50%); }
-.lb.single .lb-prev, .lb.single .lb-next { display: none; }
-@media (max-width: 600px) { .lb-prev, .lb-next { top: auto; bottom: 1rem; transform: none; } }
-
-/* Reveal */
-.r { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-.r.in { opacity: 1; transform: none; }
-.no-js .r { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .r { opacity: 1; transform: none; transition: none; }
-  .unit { animation: none; }
-  * { transition-duration: 0s !important; }
-}
-:focus-visible { outline: 2px solid var(--brick); outline-offset: 3px; }
-.dark :focus-visible, .lb :focus-visible { outline-color: var(--brick-lt); }
-.skip { position: absolute; left: 1rem; top: -4rem; z-index: 300; background: var(--ink); color: var(--white); padding: .8rem 1.2rem; font-size: var(--fs-button); font-weight: 600; }
-.skip:focus { top: 1rem; }
-.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.dev { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(32px, 7vw, 112px); align-items: start; }
+.dev-logo { width: clamp(80px, 10vw, 128px); height: auto; }
+.dev h2 { max-width: 26ch; }
+.dev .lead:first-of-type { margin-top: 24px; }
+@media (max-width: 700px) { .dev { grid-template-columns: 1fr; } }
 </style>
 </head>
-<body class="no-js">
+<body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
 
-<header class="nav" id="nav">
+<header class="nav">
   <div class="wrap nav-in">
-    <a class="logo" href="#start" aria-label="Lausitzer Quartier – zum Seitenanfang"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38"></a>
-    <nav aria-label="Hauptnavigation">
+    <a class="logo" href="index.html" aria-label="Lausitzer Quartier – Startseite"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38"></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
       <ul>
-        <li><a href="#quartier">Quartier</a></li>
-        <li><a href="#gebaeude">Gebäude</a></li>
-        <li><a class="hl" href="fabrik.html">Die Fabrik</a></li>
-        <li><a href="neubau.html">Der Neubau</a></li>
+        <li><a href="index.html" aria-current="page">Quartier</a></li>
+        <li><a href="altbau.html">Altbau</a></li>
+        <li><a href="neubau.html">Neubau</a></li>
+        <li><a href="fabrik.html">Fabrik</a></li>
         <li><a href="#lage">Lage</a></li>
-        <li><a href="#entwickler">Entwickler</a></li>
       </ul>
     </nav>
-    <a class="btn btn-brick" href="#kontakt">Anfrage <span class="arr" aria-hidden="true">→</span></a>
+    <a class="btn" href="#kontakt">Kontakt</a>
   </div>
 </header>
 
@@ -341,36 +113,36 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
 
 <!-- HERO -->
 <section class="hero" id="start">
-  <div class="wrap hero-in">
+  <div class="wrap">
     <div class="hero-grid">
-      <div class="hero-text">
+      <div>
         <span class="label">Lausitzer Straße 34 · Berlin-Kreuzberg</span>
         <h1>Willkommen <em>in Kreuzberg</em></h1>
         <p class="lead">In manchen Straßen kann man komplette Sonntage verbringen. Das Paul-Lincke-Ufer und das Maybachufer gehören dazu. Ganz in der Nähe entstehen besondere Wohnorte.</p>
-        <div class="hero-cta">
-          <a class="btn btn-brick" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
-          <a class="btn btn-line" href="#gebaeude">Die Gebäude</a>
+        <div class="actions">
+          <a class="btn" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="#gebaeude">Die Gebäude</a>
         </div>
       </div>
       <figure class="hero-img">
-        <img class="sketch" src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34_Header_Home-1400x875.jpg" alt="Zeichnung des Innenhofs im Lausitzer Quartier: links die Backsteinfabrik mit Rundbogenfenstern, in der Mitte der Neubau, davor Bäume und Pflanzbeete" width="1400" height="875" fetchpriority="high">
-        <figcaption>Illustration Innenhof mit Fabrik und Neubau</figcaption>
+        <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34_Header_Home-1400x875.jpg" alt="Zeichnung des Innenhofs im Lausitzer Quartier: links die Backsteinfabrik mit Rundbogenfenstern, in der Mitte der Neubau, davor Bäume und Pflanzbeete" width="1400" height="875" fetchpriority="high">
+        <figcaption class="note">Illustration Innenhof mit Fabrik und Neubau</figcaption>
       </figure>
     </div>
-    <div class="hero-facts">
-      <div><b>2</b><span>Gründerzeit-Altbauten</span></div>
-      <div><b>1</b><span>Denkmalgeschützte Fabrik</span></div>
-      <div><b>1</b><span>Neubau im Innenhof</span></div>
-      <div><b>5</b><span>Einheiten in der Fabrik</span></div>
-      <div><b>Provisionsfrei</b><span>Direkt vom Entwickler</span></div>
-    </div>
+    <ul class="facts" aria-label="Das Quartier in Zahlen">
+      <li><b>2</b><span>Gründerzeit-Altbauten</span></li>
+      <li><b>1</b><span>Denkmalgeschützte Fabrik</span></li>
+      <li><b>1</b><span>Neubau im Innenhof</span></li>
+      <li><b>5</b><span>Einheiten in der Fabrik</span></li>
+      <li><b>Provisionsfrei</b><span>Direkt vom Entwickler</span></li>
+    </ul>
   </div>
 </section>
 
 <!-- QUARTIER -->
-<section id="quartier">
+<section id="quartier" class="no-rule">
   <div class="wrap">
-    <div class="intro-grid r">
+    <div class="cols">
       <div>
         <span class="label">Das Quartier</span>
         <h2 class="statement">Ein Quartier mit <em>vielen Facetten</em></h2>
@@ -380,7 +152,7 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
         <p class="lead">Zwei historisch wertvolle Altbauten grenzen an ein denkmalgeschütztes Fabrikgebäude und bilden zusammen mit dem Neubau im privaten Innenhof ein Gebäudeensemble. Hier finden junge Familien, Kreative und Freigeister Lebensqualität und Raum für Entfaltung.</p>
       </div>
     </div>
-    <div class="ensemble r" aria-label="Die Bausteine des Ensembles">
+    <div class="ensemble" aria-label="Die Bausteine des Ensembles">
       <div><h3>Vorder<em>haus</em></h3><p>Saniertes Gründerzeitgebäude im vorderen Bereich</p></div>
       <div><h3>Garten<em>haus</em></h3><p>Teil des Altbaubestands im vorderen Bereich</p></div>
       <div><h3>Die <em>Fabrik</em></h3><p>Denkmalgeschütztes Backsteingebäude im Hinterhof</p></div>
@@ -390,134 +162,132 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
 </section>
 
 <!-- GEBÄUDE -->
-<section class="paper" id="gebaeude">
+<section id="gebaeude">
   <div class="wrap">
-    <div class="sec-head r">
+    <div class="head">
       <div>
         <span class="label">Die Gebäude</span>
         <h2>Drei Häuser. <em>Ein Ensemble.</em></h2>
       </div>
-      <div class="tabs" role="tablist" aria-label="Gebäude">
-        <button class="tab" type="button" role="tab" id="t-fab" aria-controls="p-fab" aria-selected="true">Fabrik<small>Im Vertrieb</small></button>
-        <button class="tab" type="button" role="tab" id="t-neu" aria-controls="p-neu" aria-selected="false" tabindex="-1">Neubau<small>Innenhof</small></button>
-        <button class="tab" type="button" role="tab" id="t-alt" aria-controls="p-alt" aria-selected="false" tabindex="-1">Altbau<small>Verkauft</small></button>
-      </div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Gebäude">
+      <button class="tab" type="button" role="tab" id="t-fab" aria-controls="p-fab" aria-selected="true">Fabrik<small>Im Vertrieb</small></button>
+      <button class="tab" type="button" role="tab" id="t-neu" aria-controls="p-neu" aria-selected="false" tabindex="-1">Neubau<small>Innenhof</small></button>
+      <button class="tab" type="button" role="tab" id="t-alt" aria-controls="p-alt" aria-selected="false" tabindex="-1">Altbau<small>Verkauft</small></button>
     </div>
 
     <!-- Fabrik -->
-    <div class="unit" role="tabpanel" id="p-fab" aria-labelledby="t-fab" tabindex="0">
+    <div class="panel unit" role="tabpanel" id="p-fab" aria-labelledby="t-fab" tabindex="0">
       <div>
-        <span class="unit-tag">Baufeld 3 · Im Vertrieb</span>
+        <span class="label">Baufeld 3 · Im Vertrieb</span>
         <h3>Die <em>Fabrik</em></h3>
-        <p class="txt">Im geräumigen Hinterhof befindet sich ein denkmalgeschütztes Fabrikgebäude aus Backstein, in dem drei großzügige Townhouses und zwei Loftwohnungen entstehen. Gehalten im Industriedesign, mit besonderem Seltenheitswert.</p>
+        <p class="text">Im geräumigen Hinterhof befindet sich ein denkmalgeschütztes Fabrikgebäude aus Backstein, in dem drei großzügige Townhouses und zwei Loftwohnungen entstehen. Gehalten im Industriedesign, mit besonderem Seltenheitswert.</p>
         <div class="kpis">
           <div><b>3</b><span>Townhouses</span></div>
           <div><b>180–190 m²</b><span>Townhouses</span></div>
           <div><b>2</b><span>Apartments</span></div>
           <div><b>120–130 m²</b><span>Apartments</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Denkmalgeschützte Architektur im Industriestil</li>
           <li>Townhouses über drei Etagen, verbunden durch eine innenliegende Treppe</li>
           <li>Privater Außenbereich zum begrünten Hof</li>
           <li>Verkauf im veredelten Rohbau</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-ink" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
-          <a class="tlink" href="#kontakt" data-interest="fabrik-th">Fabrik anfragen →</a>
+          <a class="btn" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="#kontakt" data-interest="fabrik-th">Fabrik anfragen</a>
         </div>
       </div>
       <div>
         <div class="plate" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" data-cap="Die Fabrik – Illustration der Hoffassade" role="button" tabindex="0" aria-label="Illustration der Fabrik vergrößern">
           <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" alt="Aquarellierte Zeichnung der Fabrik: Backsteinfassade mit Rundbogenfenstern, Außentreppen und Hofgrün" width="500" height="357" loading="lazy">
-          <span class="plate-zoom" aria-hidden="true">＋</span>
         </div>
         <div class="plate-meta"><span>Die Fabrik · Hofansicht</span><span>Illustration</span></div>
       </div>
     </div>
 
     <!-- Neubau -->
-    <div class="unit" role="tabpanel" id="p-neu" aria-labelledby="t-neu" tabindex="0" hidden>
+    <div class="panel unit" role="tabpanel" id="p-neu" aria-labelledby="t-neu" tabindex="0" hidden>
       <div>
-        <span class="unit-tag sage">Im privaten Innenhof</span>
+        <span class="label">Im privaten Innenhof</span>
         <h3>Der <em>Neubau</em></h3>
-        <p class="txt">Im beruhigten Hinterhof gelegen, erwartet Sie ein moderner Neubau mit ansprechenden Wohnungsschnitten und viel Raum für Ihre Ideen. Für jede Wohnung ist zudem eine barrierefreie Grundrissoption vorhanden.</p>
+        <p class="text">Im beruhigten Hinterhof gelegen, erwartet Sie ein moderner Neubau mit ansprechenden Wohnungsschnitten und viel Raum für Ihre Ideen. Für jede Wohnung ist zudem eine barrierefreie Grundrissoption vorhanden.</p>
         <div class="kpis">
           <div><b>13</b><span>Wohnungen</span></div>
           <div><b>Typ A – F</b><span>Wohnungstypen</span></div>
           <div><b>ca. 47–99 m²</b><span>Wohnfläche</span></div>
           <div><b>Barrierefrei</b><span>Grundrissoption</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Ansprechende Wohnungsschnitte mit Raum für Ihre Ideen</li>
           <li>Barrierefreie Grundrissoption für jede Wohnung</li>
           <li>Ruhige Lage im privaten Innenhof</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-ink" href="neubau.html">Den Neubau ansehen <span class="arr" aria-hidden="true">→</span></a>
-          <a class="tlink" href="#kontakt" data-interest="neubau">Neubau anfragen →</a>
+          <a class="btn" href="neubau.html">Den Neubau ansehen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="#kontakt" data-interest="neubau">Neubau anfragen</a>
         </div>
       </div>
       <div>
         <div class="plate" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" data-cap="Der Neubau im Innenhof – Illustration" role="button" tabindex="0" aria-label="Illustration des Neubaus vergrößern">
           <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" alt="Aquarellierte Zeichnung des Neubaus im Innenhof, links die Fabrik, Bäume im Vordergrund" width="500" height="357" loading="lazy">
-          <span class="plate-zoom" aria-hidden="true">＋</span>
         </div>
         <div class="plate-meta"><span>Der Neubau · Blick in den Innenhof</span><span>Illustration</span></div>
       </div>
     </div>
 
     <!-- Altbau -->
-    <div class="unit" role="tabpanel" id="p-alt" aria-labelledby="t-alt" tabindex="0" hidden>
+    <div class="panel unit" role="tabpanel" id="p-alt" aria-labelledby="t-alt" tabindex="0" hidden>
       <div>
-        <span class="unit-tag sold">100 % verkauft</span>
+        <span class="label">100 % verkauft</span>
         <h3>Der <em>Altbau</em></h3>
-        <p class="txt">Der großzügige Altbaubestand im vorderen Bereich teilt sich in Vorder- und Gartenhaus und bietet neben verschiedenen Wohnungstypen im klassischen Altbaustil auch ein ausgebautes Dachgeschoss mit hellen Räumen und Weitblick.</p>
+        <p class="text">Der großzügige Altbaubestand im vorderen Bereich teilt sich in Vorder- und Gartenhaus und bietet neben verschiedenen Wohnungstypen im klassischen Altbaustil auch ein ausgebautes Dachgeschoss mit hellen Räumen und Weitblick.</p>
         <div class="kpis">
           <div><b>2</b><span>Gründerzeitbauten</span></div>
           <div><b>Saniert</b><span>Bestand</span></div>
           <div><b>Vorderhaus</b><span>Verkauft</span></div>
           <div><b>Gartenhaus</b><span>Verkauft</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Wohnungstypen im klassischen Altbaustil</li>
           <li>Ausgebautes Dachgeschoss mit hellen Räumen</li>
           <li>Alle Einheiten in Vorder- und Gartenhaus sind verkauft</li>
         </ul>
         <div class="actions">
-          <a class="tlink" href="fabrik.html">Verfügbar: Die Fabrik →</a>
+          <a class="btn" href="altbau.html">Den Altbau ansehen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="fabrik.html">Verfügbar: Die Fabrik</a>
         </div>
       </div>
       <div>
         <div class="plate" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-altbau-alternative-500x357.jpg" data-cap="Der Altbau – Illustration der Straßenfassade" role="button" tabindex="0" aria-label="Illustration des Altbaus vergrößern">
           <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-altbau-alternative-500x357.jpg" alt="Aquarellierte Zeichnung des Gründerzeit-Altbaus mit Erker, Ladenzone und Straßenbaum" width="500" height="357" loading="lazy">
-          <span class="plate-zoom" aria-hidden="true">＋</span>
         </div>
         <div class="plate-meta"><span>Der Altbau · Straßenansicht</span><span>Illustration</span></div>
       </div>
     </div>
 
-    <div class="compare r" aria-label="Gebäude im Überblick">
-      <button type="button" data-go="t-fab" class="on"><div class="c-name">Fabrik · Baufeld 3</div><div class="c-size">5 Einheiten</div><div class="c-sub">3 Townhouses, 2 Apartments · im Vertrieb</div></button>
-      <button type="button" data-go="t-neu"><div class="c-name">Neubau · Innenhof</div><div class="c-size">Typ A – F</div><div class="c-sub">13 Wohnungen · ca. 47–99 m²</div></button>
-      <button type="button" data-go="t-alt"><div class="c-name">Altbau · Vorder- und Gartenhaus</div><div class="c-size">Verkauft</div><div class="c-sub">100 % verkauft</div></button>
+    <div class="compare" aria-label="Gebäude im Überblick">
+      <button type="button" data-go="t-fab" aria-pressed="true"><span class="meta">Fabrik · Baufeld 3</span><span class="c-size">5 Einheiten</span><span class="c-sub">3 Townhouses, 2 Apartments · im Vertrieb</span></button>
+      <button type="button" data-go="t-neu" aria-pressed="false"><span class="meta">Neubau · Innenhof</span><span class="c-size">Typ A – F</span><span class="c-sub">13 Wohnungen · ca. 47–99 m²</span></button>
+      <button type="button" data-go="t-alt" aria-pressed="false"><span class="meta">Altbau · Vorder- und Gartenhaus</span><span class="c-size">Verkauft</span><span class="c-sub">100 % verkauft</span></button>
     </div>
   </div>
 </section>
 
-<!-- FABRIK SPOTLIGHT -->
-<section class="dark" id="fabrik">
-  <div class="wrap fab">
-    <div class="r">
+<!-- FABRIK -->
+<section id="fabrik">
+  <div class="wrap cols">
+    <div>
       <figure class="fab-img" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" data-cap="Die Fabrik – Illustration der Hoffassade" role="button" tabindex="0" aria-label="Illustration der Fabrik vergrößern">
-        <img class="sketch" src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" alt="Aquarellierte Zeichnung der denkmalgeschützten Fabrik mit Rundbogenfenstern und Außentreppen" width="500" height="357" loading="lazy">
+        <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" alt="Aquarellierte Zeichnung der denkmalgeschützten Fabrik mit Rundbogenfenstern und Außentreppen" width="500" height="357" loading="lazy">
       </figure>
-      <p class="caption">Die Fabrik verbindet den hinteren Teil des Grundstücks durch einen hohen, geziegelten Gewölbegang mit der verkehrsberuhigten Straße. Ein privates Tor macht das Grundstück nur für die Bewohner zugänglich.</p>
+      <p class="note" style="margin-top: 12px;">Die Fabrik verbindet den hinteren Teil des Grundstücks durch einen hohen, geziegelten Gewölbegang mit der verkehrsberuhigten Straße. Ein privates Tor macht das Grundstück nur für die Bewohner zugänglich.</p>
     </div>
-    <div class="r">
+    <div>
       <span class="label">Baufeld 3 · Aktueller Vertrieb</span>
       <h2>Denkmalgeschützte Architektur <em>im Herzen Kreuzbergs</em></h2>
-      <p class="lead">Die Fabrik befindet sich im hinteren Teil des Grundstücks und bietet einen freien Blick in den Innenhof, der abgeschirmt vom Treiben der Stadt Licht, Ruhe und Rückzug bietet.</p>
+      <p class="lead" style="margin-top: 24px;">Die Fabrik befindet sich im hinteren Teil des Grundstücks und bietet einen freien Blick in den Innenhof, der abgeschirmt vom Treiben der Stadt Licht, Ruhe und Rückzug bietet.</p>
       <ul class="units-list" aria-label="Wohneinheiten in der Fabrik">
         <li><span class="u">Townhouse WE 35<small>Drei Etagen</small></span><span class="s">187 m²</span><span class="p">Preis auf Anfrage</span></li>
         <li><span class="u">Townhouse WE 38<small>Drei Etagen</small></span><span class="s">191 m²</span><span class="p">Preis auf Anfrage</span></li>
@@ -526,8 +296,8 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
         <li><span class="u">Apartment WE 42<small>Loftwohnung</small></span><span class="s">122 m²</span><span class="p">Preis auf Anfrage</span></li>
       </ul>
       <div class="actions">
-        <a class="btn btn-inv" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="#kontakt" data-interest="fabrik-th">Besichtigung anfragen</a>
+        <a class="btn" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
+        <a class="tlink" href="#kontakt" data-interest="fabrik-th">Besichtigung anfragen</a>
       </div>
     </div>
   </div>
@@ -535,14 +305,14 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
 
 <!-- LEBENSRAUM -->
 <section id="lebensraum">
-  <div class="wrap life">
-    <div class="r">
+  <div class="wrap cols">
+    <div>
       <span class="label">Wohnen im Quartier</span>
       <h2>Inspirierender <em>Lebensraum</em></h2>
-      <p class="lead">Je nach Interesse können Sie im Lausitzer Quartier Apartments und Townhouses verschiedener Größen und Ausrichtungen erwerben. Auf Wunsch bieten wir Ihnen außerdem ein ausgearbeitetes Designkonzept für Ihre Innenräume an.</p>
+      <p class="lead" style="margin-top: 24px;">Je nach Interesse können Sie im Lausitzer Quartier Apartments und Townhouses verschiedener Größen und Ausrichtungen erwerben. Auf Wunsch bieten wir Ihnen außerdem ein ausgearbeitetes Designkonzept für Ihre Innenräume an.</p>
       <p class="lead">Die Fabrik wird im veredelten Rohbau angeboten. Auf Wunsch stellen wir Ihnen Partner zur Seite, die Ihr Innenausbaukonzept vom Grundriss bis zur Schlüsselübergabe umsetzen.</p>
     </div>
-    <div class="life-facts r">
+    <div class="life-facts">
       <div><b>Fahrradräume</b><span>Eigene Fahrradabstellräume mit E-Lademöglichkeit</span></div>
       <div><b>Spielplatz</b><span>Im Quartier für die Bewohner</span></div>
       <div><b>Ruhebereiche</b><span>Gemeinschaftliche Aufenthaltsmöglichkeiten im Hof</span></div>
@@ -554,8 +324,8 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
 </section>
 
 <!-- GALERIE -->
-<section class="paper view" id="galerie">
-  <div class="wrap sec-head r" style="margin-bottom:0;">
+<section class="view" id="galerie">
+  <div class="wrap rail-head">
     <div>
       <span class="label">Quartier und Kiez</span>
       <h2>Zwischen Hof und <em>Maybachufer</em></h2>
@@ -566,61 +336,63 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
     </div>
   </div>
   <div class="rail" id="rail" tabindex="0" aria-label="Bildergalerie">
-    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin1-500x782.jpg" data-cap="Am Kanal in Kreuzberg" role="button" tabindex="0" aria-label="Bild vergrößern: Am Kanal in Kreuzberg"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin1-500x782.jpg" alt="Trauerweiden am Ufer des Kanals in Kreuzberg" width="500" height="782" loading="lazy"><figcaption>Am Wasser</figcaption></figure>
-    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34_Header_Home-1400x875.jpg" data-cap="Illustration Innenhof mit Fabrik und Neubau" role="button" tabindex="0" aria-label="Bild vergrößern: Illustration Innenhof"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34_Header_Home-1400x875.jpg" alt="Bleistiftzeichnung des Innenhofs mit Fabrik und Neubau" width="1400" height="875" loading="lazy"><figcaption>Der Innenhof</figcaption></figure>
-    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin2-500x422.jpg" data-cap="Gründerzeitfassade in Kreuzberg" role="button" tabindex="0" aria-label="Bild vergrößern: Gründerzeitfassade"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin2-500x422.jpg" alt="Helle Gründerzeitfassade mit Stuck, davor üppiges Grün" width="500" height="422" loading="lazy"><figcaption>Der Kiez</figcaption></figure>
-    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" data-cap="Der Neubau im Innenhof – Illustration" role="button" tabindex="0" aria-label="Bild vergrößern: Neubau"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" alt="Aquarellierte Zeichnung des Neubaus im Innenhof" width="500" height="357" loading="lazy"><figcaption>Neubau</figcaption></figure>
-    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" data-cap="Die Fabrik – Illustration der Hoffassade" role="button" tabindex="0" aria-label="Bild vergrößern: Fabrik"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" alt="Aquarellierte Zeichnung der Fabrik" width="500" height="357" loading="lazy"><figcaption>Fabrik</figcaption></figure>
-    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-altbau-alternative-500x357.jpg" data-cap="Der Altbau – Illustration der Straßenfassade" role="button" tabindex="0" aria-label="Bild vergrößern: Altbau"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-altbau-alternative-500x357.jpg" alt="Aquarellierte Zeichnung des Altbaus" width="500" height="357" loading="lazy"><figcaption>Altbau</figcaption></figure>
+    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin1-500x782.jpg" data-cap="Am Kanal in Kreuzberg" role="button" tabindex="0" aria-label="Bild vergrößern: Am Kanal in Kreuzberg"><div class="ph"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin1-500x782.jpg" alt="Trauerweiden am Ufer des Kanals in Kreuzberg" width="500" height="782" loading="lazy"></div><figcaption class="meta">Am Wasser</figcaption></figure>
+    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34_Header_Home-1400x875.jpg" data-cap="Illustration Innenhof mit Fabrik und Neubau" role="button" tabindex="0" aria-label="Bild vergrößern: Illustration Innenhof"><div class="ph"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34_Header_Home-1400x875.jpg" alt="Bleistiftzeichnung des Innenhofs mit Fabrik und Neubau" width="1400" height="875" loading="lazy"></div><figcaption class="meta">Der Innenhof</figcaption></figure>
+    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin2-500x422.jpg" data-cap="Gründerzeitfassade in Kreuzberg" role="button" tabindex="0" aria-label="Bild vergrößern: Gründerzeitfassade"><div class="ph"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin2-500x422.jpg" alt="Helle Gründerzeitfassade mit Stuck, davor üppiges Grün" width="500" height="422" loading="lazy"></div><figcaption class="meta">Der Kiez</figcaption></figure>
+    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" data-cap="Der Neubau im Innenhof – Illustration" role="button" tabindex="0" aria-label="Bild vergrößern: Neubau"><div class="ph"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" alt="Aquarellierte Zeichnung des Neubaus im Innenhof" width="500" height="357" loading="lazy"></div><figcaption class="meta">Neubau</figcaption></figure>
+    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" data-cap="Die Fabrik – Illustration der Hoffassade" role="button" tabindex="0" aria-label="Bild vergrößern: Fabrik"><div class="ph"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" alt="Aquarellierte Zeichnung der Fabrik" width="500" height="357" loading="lazy"></div><figcaption class="meta">Fabrik</figcaption></figure>
+    <figure data-g="1" data-lb="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-altbau-alternative-500x357.jpg" data-cap="Der Altbau – Illustration der Straßenfassade" role="button" tabindex="0" aria-label="Bild vergrößern: Altbau"><div class="ph"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-altbau-alternative-500x357.jpg" alt="Aquarellierte Zeichnung des Altbaus" width="500" height="357" loading="lazy"></div><figcaption class="meta">Altbau</figcaption></figure>
   </div>
 </section>
 
 <!-- LAGE -->
-<section class="dark loc" id="lage">
-  <div class="loc-img"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin1-500x782.jpg" alt="Kanalufer in Kreuzberg mit Trauerweiden" width="500" height="782" loading="lazy"></div>
-  <div class="loc-text r">
-    <span class="label">Die Lage</span>
-    <h2>Urbaner Rückzugsort für <em>moderne Ansprüche</em></h2>
-    <p class="lead">Berlin ist immer in Bewegung. Das Lausitzer Quartier bietet die Möglichkeit, in wenigen Gehminuten Teil des Großstadtlebens zu sein. In der näheren Umgebung ist alles, was das urbane Leben ausmacht.</p>
-    <p class="lead">Gleichzeitig ist das Quartier ein Ruhepol. Es ist in eine Seitenstraße eingebettet, und die privaten Höfe schaffen eine leise Atmosphäre.</p>
-    <div class="poi">
-      <div><h3>Gastronomie</h3><ul><li>La Maison</li><li>Lode &amp; Stijn</li><li>Spindler</li><li>Truffle Pig Bar</li></ul></div>
-      <div><h3>Kultur</h3><ul><li>Barbara Thumm Galerie</li><li>Berlinische Galerie</li><li>König Galerie</li><li>Willy-Brandt-Haus</li></ul></div>
-      <div><h3>Freizeit</h3><ul><li>Badeschiff</li><li>Maybachufer</li><li>Treptower Park</li><li>Viktoriapark</li></ul></div>
+<section id="lage">
+  <div class="wrap cols center">
+    <div class="loc-img"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/lausitzerquartier_berlin1-500x782.jpg" alt="Kanalufer in Kreuzberg mit Trauerweiden" width="500" height="782" loading="lazy"></div>
+    <div>
+      <span class="label">Die Lage</span>
+      <h2>Urbaner Rückzugsort für <em>moderne Ansprüche</em></h2>
+      <p class="lead" style="margin-top: 24px;">Berlin ist immer in Bewegung. Das Lausitzer Quartier bietet die Möglichkeit, in wenigen Gehminuten Teil des Großstadtlebens zu sein. In der näheren Umgebung ist alles, was das urbane Leben ausmacht.</p>
+      <p class="lead">Gleichzeitig ist das Quartier ein Ruhepol. Es ist in eine Seitenstraße eingebettet, und die privaten Höfe schaffen eine leise Atmosphäre.</p>
+      <div class="poi">
+        <div><h3 class="meta">Gastronomie</h3><ul><li>La Maison</li><li>Lode &amp; Stijn</li><li>Spindler</li><li>Truffle Pig Bar</li></ul></div>
+        <div><h3 class="meta">Kultur</h3><ul><li>Barbara Thumm Galerie</li><li>Berlinische Galerie</li><li>König Galerie</li><li>Willy-Brandt-Haus</li></ul></div>
+        <div><h3 class="meta">Freizeit</h3><ul><li>Badeschiff</li><li>Maybachufer</li><li>Treptower Park</li><li>Viktoriapark</li></ul></div>
+      </div>
+      <blockquote class="loc-quote">Eine Stadt wie keine andere, eines der authentischsten Viertel Berlins und ein Gebäudeensemble, das die Geschichte <em>seiner Umgebung aufnimmt.</em></blockquote>
+      <p class="note addr">Lausitzer Straße 34 · Berlin-Kreuzberg</p>
     </div>
-    <blockquote class="loc-quote">Eine Stadt wie keine andere, eines der authentischsten Viertel Berlins und ein Gebäudeensemble, das die Geschichte <em>seiner Umgebung aufnimmt.</em></blockquote>
-    <p class="addr">Lausitzer Straße 34 · Berlin-Kreuzberg</p>
   </div>
 </section>
 
 <!-- ENTWICKLER -->
-<section class="paper" id="entwickler">
-  <div class="wrap dev r">
+<section id="entwickler">
+  <div class="wrap dev">
     <img class="dev-logo" src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/tiedemann.svg" alt="Tiedemann Gruppe" width="150" height="167" loading="lazy">
     <div>
       <span class="label">Der Projektentwickler</span>
       <h2>Tiedemann Gruppe – <em>Bewusstsein für städtisches Wohnen</em></h2>
       <p class="lead">Die Tiedemann Gruppe ist ein inhabergeführtes Unternehmen mit Tradition und Bewusstsein für städtisches Wohnen. Den Bedürfnissen der Kundinnen und Kunden angemessen zu begegnen und zugleich im Sinne der Seele der Stadt zu handeln, ist die Basis für alle Immobilienprojekte.</p>
       <p class="lead">Ziel ist es, moderne Lebensqualität im urbanen Raum zu schaffen – in enger Zusammenarbeit mit traditionsbewussten Handwerksunternehmen und zukunftsorientierten Architekten. Qualität und Nachhaltigkeit sind dabei der Kompass.</p>
-      <a class="tlink" href="https://www.tiedemann-gruppe.de" target="_blank" rel="noopener">Zur Tiedemann Gruppe →</a>
+      <div class="actions"><a class="tlink" href="https://www.tiedemann-gruppe.de" target="_blank" rel="noopener">Zur Tiedemann Gruppe</a></div>
     </div>
   </div>
 </section>
 
 <!-- KONTAKT -->
 <section id="kontakt">
-  <div class="wrap contact">
-    <div class="r">
+  <div class="wrap cols">
+    <div>
       <span class="label">Kontakt</span>
       <h2>Kontaktieren <em>Sie uns</em></h2>
-      <p class="lead">Erwerben Sie Ihre Eigentumswohnung direkt und provisionsfrei vom Projektentwickler. Machen Sie sich ein Bild und vereinbaren Sie Ihren persönlichen Besichtigungstermin.</p>
-      <div class="cards">
-        <a href="tel:+4930208480216"><span>Telefon</span><b>+49 30 208480216</b></a>
-        <a href="mailto:kontakt@tiedemann-gruppe.de"><span>E-Mail</span><b>kontakt@tiedemann-gruppe.de</b></a>
-        <a href="fabrik.html"><span>Aktuell im Vertrieb</span><b>Die Fabrik ansehen →</b></a>
-      </div>
+      <p class="lead" style="margin-top: 24px;">Erwerben Sie Ihre Eigentumswohnung direkt und provisionsfrei vom Projektentwickler. Machen Sie sich ein Bild und vereinbaren Sie Ihren persönlichen Besichtigungstermin.</p>
+      <ul class="clist">
+        <li><a href="tel:+4930208480216"><span>Telefon</span><b>+49 30 208480216</b></a></li>
+        <li><a href="mailto:kontakt@tiedemann-gruppe.de"><span>E-Mail</span><b>kontakt@tiedemann-gruppe.de</b></a></li>
+        <li><a href="fabrik.html"><span>Aktuell im Vertrieb</span><b>Die Fabrik ansehen →</b></a></li>
+      </ul>
     </div>
-    <form class="r" id="form" action="#" method="post">
+    <form class="form" id="form" action="#" method="post">
       <fieldset class="f">
         <legend>Ich interessiere mich für</legend>
         <div class="chips" id="chips">
@@ -656,20 +428,29 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
       </div>
       <div class="f"><label for="msg">Nachricht</label><textarea id="msg" name="nachricht" placeholder="Wunschtermin für eine Besichtigung, Fragen zu den Einheiten …"></textarea></div>
       <label class="consent"><input type="checkbox" name="datenschutz" required> <span>Ich stimme der <a href="https://www.lausitzerquartier.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.*</span></label>
-      <button class="btn btn-brick" type="submit">Anfrage senden <span class="arr" aria-hidden="true">→</span></button>
+      <button class="btn" type="submit">Anfrage senden <span class="arr" aria-hidden="true">→</span></button>
     </form>
   </div>
 </section>
 
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <div class="foot-big" aria-hidden="true">Lausitzer <b>Quartier</b></div>
-    <div class="foot">
+    <div class="foot-top">
+      <a class="logo" href="index.html" aria-label="Lausitzer Quartier – Startseite"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38" loading="lazy"></a>
+      <nav aria-label="Gebäude">
+        <a href="index.html" aria-current="page">Quartier</a>
+        <a href="altbau.html">Altbau</a>
+        <a href="neubau.html">Neubau</a>
+        <a href="fabrik.html">Fabrik</a>
+        <a href="#lage">Lage</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
       <span>© <a href="https://www.tiedemann-gruppe.de" target="_blank" rel="noopener">Tiedemann Gruppe</a> · Lausitzer Straße 34, Berlin-Kreuzberg</span>
       <nav aria-label="Rechtliches und Social Media">
-        <a href="neubau.html">Den Neubau ansehen</a>
         <a href="https://www.lausitzerquartier.de/impressum/">Impressum</a>
         <a href="https://www.lausitzerquartier.de/datenschutz/">Datenschutz</a>
         <a href="https://www.linkedin.com/company/tiedemann-gruppe/" target="_blank" rel="noopener">LinkedIn</a>
@@ -687,115 +468,6 @@ footer { background: var(--ink); color: var(--muted-inv); font-size: var(--fs-sm
   <figure><img id="lbImg" alt=""><p id="lbCap"></p></figure>
 </div>
 
-<script>
-(() => {
-  document.body.classList.remove('no-js');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const behavior = reduce ? 'auto' : 'smooth';
-
-  // Nav
-  const nav = document.getElementById('nav');
-  const setNav = () => nav.classList.toggle('solid', scrollY > 24);
-  addEventListener('scroll', setNav, { passive: true }); setNav();
-
-  // Reveal
-  if ('IntersectionObserver' in window && !reduce) {
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.r').forEach(el => io.observe(el));
-  } else {
-    document.querySelectorAll('.r').forEach(el => el.classList.add('in'));
-  }
-
-  // Tabs
-  const tabs = [...document.querySelectorAll('.tab')];
-  const cmp = [...document.querySelectorAll('.compare button')];
-  function select(id, focus) {
-    tabs.forEach(t => {
-      const on = t.id === id;
-      t.setAttribute('aria-selected', on);
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      if (on && focus) t.focus();
-    });
-    cmp.forEach(b => b.classList.toggle('on', b.dataset.go === id));
-  }
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => select(t.id));
-    t.addEventListener('keydown', e => {
-      let n = null;
-      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-      else if (e.key === 'Home') n = 0;
-      else if (e.key === 'End') n = tabs.length - 1;
-      if (n !== null) { e.preventDefault(); select(tabs[n].id, true); }
-    });
-  });
-  cmp.forEach(b => b.addEventListener('click', () => {
-    select(b.dataset.go);
-    document.getElementById('gebaeude').scrollIntoView({ behavior });
-  }));
-
-  // Interesse im Formular vorwählen
-  document.querySelectorAll('[data-interest]').forEach(a => a.addEventListener('click', () => {
-    const r = document.querySelector('#chips input[data-key="' + a.dataset.interest + '"]');
-    if (r) r.checked = true;
-  }));
-
-  // Galerie-Rail
-  const rail = document.getElementById('rail');
-  const step = () => rail.clientWidth * .7;
-  document.getElementById('railPrev').onclick = () => rail.scrollBy({ left: -step(), behavior });
-  document.getElementById('railNext').onclick = () => rail.scrollBy({ left: step(), behavior });
-
-  // Lightbox
-  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
-  const lbX = document.getElementById('lbX'), lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
-  const gallery = [...document.querySelectorAll('[data-g]')];
-  let last, group = [], idx = 0;
-  function render() {
-    const el = group[idx];
-    lbImg.src = el.dataset.lb;
-    lbImg.alt = el.dataset.cap || '';
-    lbCap.textContent = el.dataset.cap || '';
-  }
-  function open(el) {
-    last = el;
-    group = el.dataset.g ? gallery : [el];
-    idx = Math.max(0, group.indexOf(el));
-    lb.classList.toggle('single', group.length < 2);
-    render();
-    lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => lbX.focus());
-  }
-  function close() {
-    if (!lb.classList.contains('open')) return;
-    lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (last) last.focus();
-  }
-  const go = d => { if (group.length > 1) { idx = (idx + d + group.length) % group.length; render(); } };
-  document.querySelectorAll('[data-lb]').forEach(el => {
-    el.addEventListener('click', () => open(el));
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el); } });
-  });
-  lbX.onclick = close;
-  lbPrev.onclick = () => go(-1);
-  lbNext.onclick = () => go(1);
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') go(1);
-    else if (e.key === 'ArrowLeft') go(-1);
-    else if (e.key === 'Tab') {
-      const f = [...lb.querySelectorAll('button')].filter(b => b.offsetParent !== null);
-      const i = f.indexOf(document.activeElement);
-      e.preventDefault();
-      f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
-    }
-  });
-})();
-</script>
+<script src="assets/lq.js"></script>
 </body>
 </html>

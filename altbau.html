@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Altbau – Lausitzer Quartier</title>
+<meta name="description" content="Der Altbau im Lausitzer Quartier, Berlin-Kreuzberg: denkmalgeschütztes, saniertes Gründerzeit-Ensemble aus Vorderhaus und Gartenhaus. Alle Wohnungen sind verkauft – verfügbar sind Einheiten in Fabrik und Neubau.">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="stylesheet" href="assets/lq.css">
+<style>
+/* Altbau */
+.status-note { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.status-note b { color: var(--ink); }
+.sketch { cursor: zoom-in; }
+.sketch img { mix-blend-mode: multiply; }
+.houses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(32px, 5vw, 64px); margin-top: clamp(40px, 5vw, 56px); }
+.houses h3 { font-size: var(--fs-h1); line-height: 1.2; }
+.types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(40px, 5vw, 56px) clamp(24px, 3vw, 40px); }
+.type-card .plate { padding: 0; border: 0; background: none; }
+.type-card .plate img { aspect-ratio: 7 / 5; object-fit: cover; }
+.type-card .meta { margin-top: 16px; }
+.type-card h3 { margin-top: 4px; }
+.type-card .sub { color: var(--muted); margin-top: 2px; }
+.type-card .list { margin-top: 14px; }
+.type-card .list li { padding: 8px 0; font-size: var(--fs-small); line-height: 1.5; }
+.avail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 5vw, 64px); }
+.avail .plate { cursor: default; }
+.avail h3 { font-size: var(--fs-h1); line-height: 1.2; margin-top: 20px; }
+@media (max-width: 900px) { .types { grid-template-columns: 1fr 1fr; } .houses, .avail { grid-template-columns: 1fr; } .houses > div + div { margin-top: 40px; } }
+@media (max-width: 560px) { .types { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="index.html" aria-label="Lausitzer Quartier – Startseite"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38"></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="index.html">Quartier</a></li>
+        <li><a href="altbau.html" aria-current="page">Altbau</a></li>
+        <li><a href="neubau.html">Neubau</a></li>
+        <li><a href="fabrik.html">Fabrik</a></li>
+        <li><a href="index.html#lage">Lage</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#kontakt">Kontakt</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- SEITENKOPF -->
+<section class="phero" aria-label="Der Altbau">
+  <div class="wrap">
+    <div class="phero-text">
+      <div>
+        <span class="label">Lausitzer Straße 34 · Berlin-Kreuzberg</span>
+        <h1>Der <em>Altbau</em></h1>
+      </div>
+      <p class="lead">Denkmalgeschütztes, saniertes Gründerzeit-Ensemble aus Vorderhaus und Gartenhaus. Alle Wohnungen sind verkauft.</p>
+    </div>
+    <div class="phero-img">
+      <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-1400x1120.jpg"
+           srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-800x640.jpg 800w,
+                   https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-1200x960.jpg 1200w,
+                   https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-1400x1120.jpg 1400w"
+           sizes="(max-width: 1280px) 100vw, 1140px" width="1400" height="1120" fetchpriority="high"
+           alt="Wohnraum im Altbau: helles Sofa, Couchtisch und Sessel vor einem Erker mit hohen Sprossenfenstern, Fischgrätparkett">
+    </div>
+    <ul class="facts" aria-label="Der Altbau in Zahlen">
+      <li><b>2</b><span>Häuser · Vorder- und Gartenhaus</span></li>
+      <li><b>5</b><span>Wohnungstypen</span></li>
+      <li><b>ca. 26–122 m²</b><span>Wohnfläche</span></li>
+      <li><b>100 % verkauft</b><span>Status</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="ensemble" class="no-rule">
+  <div class="wrap cols">
+    <div>
+      <span class="label">Das Altbau-Ensemble</span>
+      <h2>Vorderhaus und Gartenhaus <em>aus der Gründerzeit</em></h2>
+      <p class="lead" style="margin-top: 24px;">Der Altbau des Lausitzer Quartiers besteht aus einem Vorderhaus und einem Gartenhaus, beide typische Berliner Wohnhäuser der Gründerzeit. Die Gebäude stehen unter Denkmalschutz, wurden umfassend saniert und zeigen ihre Stuckfassaden in neuem Anstrich.</p>
+      <p class="lead">Die Wohnungen haben individuelle Grundrisse in unterschiedlichen Größen, vom kompakten Studio bis zur Vier-Zimmer-Wohnung. Zusätzliche Ausstattungswünsche wurden auf Grundlage eines Ausstattungskatalogs umgesetzt.</p>
+      <p class="text status-note"><b>Alle Wohnungen im Altbau sind verkauft.</b> Diese Seite stellt das Ensemble als Referenz vor. Verfügbare Einheiten finden Sie in der <a class="tlink" href="fabrik.html">Fabrik</a> und im <a class="tlink" href="neubau.html">Neubau</a>.</p>
+    </div>
+    <div>
+      <button type="button" class="plate sketch" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Illustration-Altbau-final-02.jpg" data-cap="Flur im Altbau – Skizze" aria-label="Skizze des Altbau-Flurs vergrößern">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Illustration-Altbau-final-02-720x1047.jpg"
+             srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Illustration-Altbau-final-02-500x727.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Illustration-Altbau-final-02-720x1047.jpg 720w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Illustration-Altbau-final-02-1000x1455.jpg 1000w"
+             sizes="(max-width: 900px) 100vw, 50vw" width="720" height="1047" loading="lazy"
+             alt="Kolorierte Skizze eines Altbau-Flurs mit Rundbogen, Schienenstrahlern und Dielenboden">
+      </button>
+      <div class="plate-meta"><span>Flur im Altbau</span><span>Skizze</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="label">Einblicke · Showroom</span>
+        <h2>Material, Licht und <em>originale Details</em></h2>
+      </div>
+      <p class="lead">Materialproben und Designvorschläge zeigen wir im Showroom in der Lausitzer Straße 34. Ein Besuch ist nach Terminvereinbarung möglich.</p>
+    </div>
+    <div class="gallery" aria-label="Bildergalerie Altbau, zum Vergrößern auswählen">
+      <button type="button" class="g-item t" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_01.jpg" data-cap="Flur mit Rundbogen und Fischgrätparkett">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_01-500x625.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_01-500x625.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_01-800x1000.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw" width="500" height="625" loading="lazy" alt="Langer heller Flur mit Rundbogen, Schienenstrahlern und Fischgrätparkett">
+      </button>
+      <button type="button" class="g-item w" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_05.jpg" data-cap="Zimmer mit Flügeltür">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_05-800x640.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_05-800x640.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_05-1200x960.jpg 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="800" height="640" loading="lazy" alt="Leeres Zimmer mit geöffneter weißer Kassetten-Flügeltür, Heizkörper und Fischgrätparkett">
+      </button>
+      <button type="button" class="g-item t" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_03.jpg" data-cap="Essplatz am Fenster">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_03-500x625.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_03-500x625.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_03-800x1000.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw" width="500" height="625" loading="lazy" alt="Runder Tisch mit Steinplatte und Hocker am Fenster, darüber eine schwarze Wandleuchte">
+      </button>
+      <button type="button" class="g-item" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_06.jpg" data-cap="Historischer Türbeschlag">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_06-500x400.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_06-500x400.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_06-800x640.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw" width="500" height="400" loading="lazy" alt="Verzierter Türdrücker aus Messing an einer weißen Altbautür, dahinter ein Fenster">
+      </button>
+      <button type="button" class="g-item" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_09.jpg" data-cap="Schlafzimmer">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_09-500x400.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_09-500x400.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_09-800x640.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw" width="500" height="400" loading="lazy" alt="Schlafzimmer mit hellem Bett, Holzbank und hohen Fenstern mit Vorhängen">
+      </button>
+      <button type="button" class="g-item t" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_10.jpg" data-cap="Original erhaltene Holzvertäfelung">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_10-500x625.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_10-500x625.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_10-800x1000.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw" width="500" height="625" loading="lazy" alt="Weiß lackierte Holzvertäfelung mit kannelierten Pilastern und Profilleisten">
+      </button>
+      <button type="button" class="g-item w" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07.jpg" data-cap="Wohnraum mit Erker">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-800x640.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-800x640.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_07-1200x960.jpg 1200w" sizes="(max-width: 900px) 100vw, 50vw" width="800" height="640" loading="lazy" alt="Wohnraum mit Sofa, Couchtisch und Sessel vor einem Erker mit hohen Fenstern">
+      </button>
+      <button type="button" class="g-item" data-g="altbau" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_02.jpg" data-cap="Textilien aus Leinen">
+        <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_02-500x625.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_02-500x625.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Altbau_Galerie_02-800x1000.jpg 800w" sizes="(max-width: 900px) 50vw, 25vw" width="500" height="625" loading="lazy" alt="Nahaufnahme zweier Leinenkissen in Weiß und Sand">
+      </button>
+    </div>
+    <p class="note" style="margin-top: 16px;">Fotos mit beispielhafter Möblierung.</p>
+  </div>
+</section>
+
+<!-- VORDERHAUS / GARTENHAUS -->
+<section id="haeuser">
+  <div class="wrap">
+    <div class="cols center">
+      <div>
+        <span class="label">Vorderhaus · Gartenhaus</span>
+        <h2>Zwei Häuser, <em>ein gemeinsamer Hof</em></h2>
+        <p class="lead" style="margin-top: 24px;">Das Ensemble gliedert sich in das Vorderhaus an der Lausitzer Straße und das dahinterliegende Gartenhaus. Im obersten Geschoss beider Häuser liegen Dachgeschosswohnungen mit umlaufenden Terrassen und Weitblick.</p>
+        <p class="lead">Nach hinten grenzen die Gebäude an die Höfe des Quartiers, die ausschließlich den Bewohnerinnen und Bewohnern offenstehen. Zusammen mit der Backsteinfabrik und dem Neubau im Innenhof bildet der Altbau das Lausitzer Quartier.</p>
+      </div>
+      <div>
+        <button type="button" class="plate" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Illustration_Altbau_final.jpg" data-cap="Vorderhaus und Gartenhaus an der Lausitzer Straße, Skizze" aria-label="Skizze von Vorderhaus und Gartenhaus vergrößern">
+          <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Illustration_Altbau_final-1000x694.jpg"
+               srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Illustration_Altbau_final-720x500.jpg 720w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Illustration_Altbau_final-1000x694.jpg 1000w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34_Illustration_Altbau_final-1400x972.jpg 1400w"
+               sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="694" loading="lazy"
+               alt="Bleistiftskizze aus der Vogelperspektive: Vorderhaus an der Lausitzer Straße und Gartenhaus im Hof, beide beschriftet">
+        </button>
+        <div class="plate-meta"><span>Lage von Vorder- und Gartenhaus</span><span>Skizze</span></div>
+      </div>
+    </div>
+    <div class="houses">
+      <div>
+        <h3>Vorder<em>haus</em></h3>
+        <ul class="list">
+          <li><b>Apartments</b> · 3–4 Zimmer, ca. 119–122 m², authentischer Stuck, je nach Einheit mit Balkon oder Erker</li>
+          <li><b>Dachgeschoss</b> · 2–4 Zimmer, ca. 110 m², überdachte Terrasse</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Garten<em>haus</em></h3>
+        <ul class="list">
+          <li><b>Apartments</b> · 2–3 Zimmer, ca. 41–100 m²</li>
+          <li><b>Studios</b> · 1 Zimmer, ca. 26–29 m²</li>
+          <li><b>Dachgeschoss</b> · 2–4 Zimmer, ca. 95–99 m², überdachte Terrasse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WOHNUNGSTYPEN -->
+<section id="wohnungstypen">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="label">5 Wohnungstypen · Verkauft</span>
+        <h2>Die <em>Wohnungstypen</em></h2>
+      </div>
+      <p class="lead">Alle Wohnungstypen im Vorder- und Gartenhaus sind verkauft. Die Übersicht zeigt, wie das Altbau-Ensemble aufgeteilt ist.</p>
+    </div>
+    <div class="types">
+      <article class="type-card">
+        <button type="button" class="plate" data-g="typen" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/4.jpg" data-cap="Gartenhaus Apartment – Skizze" aria-label="Skizze Gartenhaus Apartment vergrößern">
+          <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/4-800x571.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/4-500x357.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2021/01/4-800x571.jpg 800w" sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" width="800" height="571" loading="lazy" alt="Kolorierte Skizze eines Essplatzes mit rundem Tisch am Fenster">
+        </button>
+        <span class="meta">Verkauft</span>
+        <h3>Gartenhaus <em>Apartment</em></h3>
+        <p class="sub">2–3 Zimmer · ca. 41–100 m²</p>
+        <ul class="list"><li>Echtholzparkett</li><li>Bäder mit großem Fenster</li></ul>
+      </article>
+      <article class="type-card">
+        <button type="button" class="plate" data-g="typen" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/1.jpg" data-cap="Gartenhaus Studio – Skizze" aria-label="Skizze Gartenhaus Studio vergrößern">
+          <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/1-800x571.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/1-500x357.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2021/01/1-800x571.jpg 800w" sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" width="800" height="571" loading="lazy" alt="Kolorierte Skizze eines Studio-Apartments">
+        </button>
+        <span class="meta">Verkauft</span>
+        <h3>Gartenhaus <em>Studio</em></h3>
+        <p class="sub">1 Zimmer · ca. 26–29 m²</p>
+        <ul class="list"><li>Kompakte Studiogrundrisse</li><li>Echtholzparkett, Bad, Abstellraum</li></ul>
+      </article>
+      <article class="type-card">
+        <button type="button" class="plate" data-g="typen" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/2.jpg" data-cap="Gartenhaus Dachgeschoss – Skizze" aria-label="Skizze Gartenhaus Dachgeschoss vergrößern">
+          <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/2-800x571.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/2-500x357.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2021/01/2-800x571.jpg 800w" sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" width="800" height="571" loading="lazy" alt="Kolorierte Skizze einer Dachgeschosswohnung im Gartenhaus">
+        </button>
+        <span class="meta">Verkauft</span>
+        <h3>Gartenhaus <em>Dachgeschoss</em></h3>
+        <p class="sub">2–4 Zimmer · ca. 95–99 m²</p>
+        <ul class="list"><li>Offene Küche, Tageslichtbad</li><li>Echtholzparkett, überdachte Terrasse</li></ul>
+      </article>
+      <article class="type-card">
+        <button type="button" class="plate" data-g="typen" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/3.jpg" data-cap="Vorderhaus Dachgeschoss – Skizze" aria-label="Skizze Vorderhaus Dachgeschoss vergrößern">
+          <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/3-800x571.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/3-500x357.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2021/01/3-800x571.jpg 800w" sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" width="800" height="571" loading="lazy" alt="Kolorierte Skizze einer Dachgeschosswohnung im Vorderhaus">
+        </button>
+        <span class="meta">Verkauft</span>
+        <h3>Vorderhaus <em>Dachgeschoss</em></h3>
+        <p class="sub">2–4 Zimmer · ca. 110 m²</p>
+        <ul class="list"><li>Offene Küche</li><li>Echtholzparkett, überdachte Terrasse</li></ul>
+      </article>
+      <article class="type-card">
+        <button type="button" class="plate" data-g="typen" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/6-1.jpg" data-cap="Vorderhaus Apartment – Skizze" aria-label="Skizze Vorderhaus Apartment vergrößern">
+          <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/6-1-800x571.jpg" srcset="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/6-1-500x357.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2021/01/6-1-800x571.jpg 800w" sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" width="800" height="571" loading="lazy" alt="Kolorierte Skizze einer Altbauwohnung im Vorderhaus">
+        </button>
+        <span class="meta">Verkauft</span>
+        <h3>Vorderhaus <em>Apartment</em></h3>
+        <p class="sub">3–4 Zimmer · ca. 119–122 m²</p>
+        <ul class="list"><li>Echtholzparkett, authentischer Stuck</li><li>Je nach Einheit mit Balkon oder Erker</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GRUNDRISSBEISPIELE -->
+<section id="grundrisse">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="label">Auszug · Verkauft</span>
+        <h2>Grundriss<em>beispiele</em></h2>
+      </div>
+      <p class="lead">Eine Auswahl verkaufter Wohnungen aus dem Gartenhaus. Die Grundrisse stehen als PDF zur Ansicht bereit.</p>
+    </div>
+    <table class="table">
+      <caption class="vh">Grundrissbeispiele aus dem Altbau, alle verkauft</caption>
+      <thead><tr><th scope="col">Einheit</th><th scope="col">Typ</th><th scope="col">Zimmer</th><th scope="col">Größe</th><th scope="col">Status</th><th scope="col">Plan</th></tr></thead>
+      <tbody>
+        <tr><td>WE 12</td><td data-label="Typ">Gartenhaus Apartment</td><td data-label="Zimmer">2</td><td data-label="Größe" class="num">64,89 m²</td><td data-label="Status"><span class="status">Verkauft</span></td><td data-label="Plan"><a href="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/WE12.pdf" target="_blank" rel="noopener">Anschauen (PDF)</a></td></tr>
+        <tr><td>WE 16</td><td data-label="Typ">Gartenhaus Studio</td><td data-label="Zimmer">1</td><td data-label="Größe" class="num">29,04 m²</td><td data-label="Status"><span class="status">Verkauft</span></td><td data-label="Plan"><a href="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/WE16.pdf" target="_blank" rel="noopener">Anschauen (PDF)</a></td></tr>
+        <tr><td>WE 17</td><td data-label="Typ">Gartenhaus Studio</td><td data-label="Zimmer">1</td><td data-label="Größe" class="num">29,11 m²</td><td data-label="Status"><span class="status">Verkauft</span></td><td data-label="Plan"><a href="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/WE17.pdf" target="_blank" rel="noopener">Anschauen (PDF)</a></td></tr>
+        <tr><td>WE 25</td><td data-label="Typ">Gartenhaus Studio</td><td data-label="Zimmer">1</td><td data-label="Größe" class="num">29,05 m²</td><td data-label="Status"><span class="status">Verkauft</span></td><td data-label="Plan"><a href="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/WE25.pdf" target="_blank" rel="noopener">Anschauen (PDF)</a></td></tr>
+        <tr><td>WE 28</td><td data-label="Typ">Gartenhaus Apartment</td><td data-label="Zimmer">2</td><td data-label="Größe" class="num">73,30 m²</td><td data-label="Status"><span class="status">Verkauft</span></td><td data-label="Plan"><a href="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/WE28.pdf" target="_blank" rel="noopener">Anschauen (PDF)</a></td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top: 16px;">Auszugsweise Übersicht. Weitere Grundrisse aus dem Altbau auf Anfrage.</p>
+  </div>
+</section>
+
+<!-- NOCH VERFÜGBAR -->
+<section id="verfuegbar">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="label">Im Quartier verfügbar</span>
+        <h2>Noch verfügbar: <em>Fabrik und Neubau</em></h2>
+      </div>
+      <p class="lead">Wohnungen im Lausitzer Quartier gibt es weiterhin in der denkmalgeschützten Fabrik und im Neubau im Innenhof, provisionsfrei vom Projektentwickler.</p>
+    </div>
+    <div class="avail">
+      <article>
+        <a class="plate" href="fabrik.html" tabindex="-1" aria-hidden="true">
+          <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-fabrik-final-500x357.jpg" alt="" width="500" height="357" loading="lazy">
+        </a>
+        <h3>Die <em>Fabrik</em></h3>
+        <div class="kpis">
+          <div><b>3</b><span>Townhouses · 180–190 m²</span></div>
+          <div><b>2</b><span>Apartments · 120–130 m²</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="fabrik.html">Die Fabrik ansehen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="#kontakt" data-interest="Fabrik">Fabrik anfragen</a>
+        </div>
+      </article>
+      <article>
+        <a class="plate" href="neubau.html" tabindex="-1" aria-hidden="true">
+          <img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/Lau34-homepage-FINAL-500x357.jpg" alt="" width="500" height="357" loading="lazy">
+        </a>
+        <h3>Der <em>Neubau</em></h3>
+        <div class="kpis">
+          <div><b>13</b><span>Wohnungen · Typ A – F</span></div>
+          <div><b>ca. 47–99 m²</b><span>Wohnfläche</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="neubau.html">Den Neubau ansehen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="#kontakt" data-interest="Neubau">Neubau anfragen</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="wrap cols">
+    <div>
+      <span class="label">Kontakt</span>
+      <h2>Kontaktieren <em>Sie uns</em></h2>
+      <p class="lead" style="margin-top: 24px;">Erwerben Sie Ihre Eigentumswohnung direkt und provisionsfrei vom Projektentwickler. Für Fragen zu Fabrik und Neubau oder einen Termin im Showroom erreichen Sie uns telefonisch oder per E-Mail.</p>
+      <ul class="clist">
+        <li><a href="tel:+4930208480216"><span>Telefon</span><b>+49 30 208480216</b></a></li>
+        <li><a href="mailto:kontakt@tiedemann-gruppe.de"><span>E-Mail</span><b>kontakt@tiedemann-gruppe.de</b></a></li>
+        <li><a href="fabrik.html"><span>Aktuell im Vertrieb</span><b>Die Fabrik ansehen →</b></a></li>
+      </ul>
+    </div>
+    <form class="form" id="form" action="#" method="post">
+      <div class="f">
+        <label for="interesse">Ich interessiere mich für</label>
+        <select id="interesse" name="interesse">
+          <option>Allgemeine Anfrage</option>
+          <option>Fabrik</option>
+          <option>Neubau</option>
+        </select>
+      </div>
+      <div class="f-row">
+        <div class="f"><label for="vorname">Vorname*</label><input type="text" id="vorname" name="vorname" autocomplete="given-name" required></div>
+        <div class="f"><label for="nachname">Nachname*</label><input type="text" id="nachname" name="nachname" autocomplete="family-name" required></div>
+      </div>
+      <div class="f-row">
+        <div class="f"><label for="email">E-Mail*</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+        <div class="f"><label for="tel">Telefon</label><input type="tel" id="tel" name="telefon" autocomplete="tel"></div>
+      </div>
+      <div class="f-row">
+        <div class="f">
+          <label for="zeit">Telefonisch erreichbar</label>
+          <select id="zeit" name="erreichbarkeit">
+            <option value="">Bitte wählen</option>
+            <option>9–10 Uhr</option><option>10–11 Uhr</option><option>11–12 Uhr</option><option>12–13 Uhr</option><option>13–14 Uhr</option><option>14–15 Uhr</option><option>15–16 Uhr</option><option>16–17 Uhr</option><option>17–18 Uhr</option>
+          </select>
+        </div>
+        <div class="f">
+          <label for="quelle">Wie haben Sie von uns gehört?</label>
+          <select id="quelle" name="herkunft">
+            <option value="">Bitte wählen</option>
+            <option>Bauschild</option><option>Facebook</option><option>Google</option><option>Immobilienportal</option><option>Instagram</option><option>LinkedIn</option><option>Magazin/Zeitschrift</option><option>Veranstaltung</option><option>Weiterempfehlung</option>
+          </select>
+        </div>
+      </div>
+      <div class="f"><label for="msg">Nachricht</label><textarea id="msg" name="nachricht" placeholder="Wunschtermin für eine Besichtigung, Fragen zu Fabrik oder Neubau …"></textarea></div>
+      <label class="consent"><input type="checkbox" name="datenschutz" required> <span>Ich stimme der <a href="https://www.lausitzerquartier.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.*</span></label>
+      <button class="btn" type="submit">Anfrage senden <span class="arr" aria-hidden="true">→</span></button>
+      <p class="form-hint">* Pflichtfelder</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="logo" href="index.html" aria-label="Lausitzer Quartier – Startseite"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38" loading="lazy"></a>
+      <nav aria-label="Gebäude">
+        <a href="index.html">Quartier</a>
+        <a href="altbau.html" aria-current="page">Altbau</a>
+        <a href="neubau.html">Neubau</a>
+        <a href="fabrik.html">Fabrik</a>
+        <a href="index.html#lage">Lage</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <a href="https://www.tiedemann-gruppe.de" target="_blank" rel="noopener">Tiedemann Gruppe</a> · Lausitzer Straße 34, Berlin-Kreuzberg</span>
+      <nav aria-label="Rechtliches und Sprache">
+        <a href="https://www.lausitzerquartier.de/impressum/">Impressum</a>
+        <a href="https://www.lausitzerquartier.de/datenschutz/">Datenschutz</a>
+        <a href="https://www.lausitzerquartier.de/en/altbau/" lang="en" hreflang="en">English</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Bildansicht" aria-hidden="true">
+  <button class="lb-btn lb-x" id="lbX" type="button" aria-label="Schließen">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Vorheriges Bild">←</button>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Nächstes Bild">→</button>
+  <figure><img id="lbImg" alt=""><p id="lbCap"></p></figure>
+</div>
+
+<script src="assets/lq.js"></script>
+</body>
+</html>

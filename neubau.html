@@ -5,680 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Der Neubau – Lausitzer Quartier</title>
 <meta name="description" content="Der Neubau im zweiten Hinterhof des Lausitzer Quartiers in Berlin-Kreuzberg: Klinkerneubau mit 13 Eigentumswohnungen, sechs Wohnungstypen von ca. 47 bis 99 m², provisionsfrei direkt vom Projektentwickler.">
-<meta name="theme-color" content="#2b2725">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="stylesheet" href="assets/lq.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0; }
-
-  :root {
-    /* Palette wie Startseite (index.html): Tusche, Papier, Backstein */
-    --ink:       #2b2725;
-    --ink-2:     #3a3532;
-    --paper:     #f4f1ec;
-    --paper-2:   #e9e4dc;
-    --white:     #fbfaf7;
-    --brick:     #8c4a3a;   /* Akzent auf hellem Grund (>=6:1) */
-    --brick-dk:  #713a2d;
-    --brick-lt:  #d7a08a;   /* Akzent auf dunklem Grund */
-    --sage:      #5c6b52;
-    --muted:     #625d56;   /* Fließtext gedämpft (>=5.9:1 auf Papier) */
-    --muted-inv: #a8a29a;   /* gedämpft auf Tusche (>=5.9:1) */
-    --rule:      rgba(43,39,37,.14);
-    --rule-inv:  rgba(251,250,247,.16);
-
-    --font: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-
-    /* Tiedemann type scale */
-    --fs-display: clamp(40px, 5vw, 64px);
-    --lh-display: 1.05;
-    --fs-h1: clamp(28px, 2.6vw, 40px);
-    --lh-h1: 1.2;
-    --fs-h2: 20px;
-    --lh-h2: 1.3;
-    --fs-body: 15px;
-    --lh-body: 1.6;
-    --fs-lead: 17px;
-    --fs-small: 13px;
-    --lh-small: 1.5;
-    --fs-button: 14px;
-    --fs-label: 11px;
-    --ls-label: 0.14em;
-
-    --fw-light: 300;
-    --fw-regular: 400;
-    --fw-semibold: 600;
-
-    --ease: cubic-bezier(.2,.7,.2,1);
-  }
-
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-
-  body {
-    font-family: var(--font);
-    font-weight: var(--fw-regular);
-    color: var(--ink);
-    background: var(--white);
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  img { max-width: 100%; display: block; }
-  button, input, select, textarea { font: inherit; color: inherit; }
-  em, i, cite { font-style: normal; }
-  b, strong { font-weight: var(--fw-semibold); }
-
-  /* Titles: receding part Light 300, carrying part SemiBold 600 */
-  h1, h2, h3 {
-    font-family: var(--font);
-    font-weight: var(--fw-light);
-    letter-spacing: -0.01em;
-  }
-  h1 em, h2 em, h3 em {
-    font-style: normal;
-    font-weight: var(--fw-semibold);
-  }
-  h2 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
-  h3 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
-
-  /* Overlines / labels */
-  .label {
-    display: block;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    line-height: var(--lh-small);
-    text-transform: uppercase;
-    color: var(--brick);
-    margin-bottom: 20px;
-  }
-  .dark .label { color: var(--brick-lt); }
-
-  .lead {
-    font-size: var(--fs-lead);
-    line-height: var(--lh-body);
-    color: var(--muted);
-    max-width: 640px;
-  }
-  .lead + .lead { margin-top: 16px; }
-
-  /* NAV (wie fabrik.html) */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 48px;
-    height: 72px;
-    background: rgba(251,250,247,0.95);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  nav ul { list-style: none; display: flex; gap: 36px; align-items: center; }
-
-  nav a {
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  nav a:hover, nav a.active { color: var(--brick); }
-
-  .nav-left, .nav-right { display: flex; gap: 36px; align-items: center; }
-
-  .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
-  .nav-logo img { height: 36px; width: auto; }
-
-  /* HERO */
-  .hero {
-    margin-top: 72px;
-    position: relative;
-    height: calc(100vh - 72px - 112px);
-    height: calc(100svh - 72px - 112px);
-    min-height: 460px;
-    padding: 0;
-    overflow: hidden;
-    background: var(--ink);
-  }
-  .hero picture, .hero img { display: block; width: 100%; height: 100%; }
-  .hero img { object-fit: cover; object-position: center 55%; }
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 65%;
-    background: linear-gradient(to top, rgba(43,39,37,0.9) 0%, rgba(43,39,37,0.6) 45%, rgba(43,39,37,0) 100%);
-    pointer-events: none;
-  }
-  .hero-caption { position: absolute; bottom: 56px; left: 56px; right: 24px; z-index: 1; }
-  .hero-caption h1 { font-size: var(--fs-display); line-height: var(--lh-display); color: var(--white); }
-  .hero-caption p {
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.92);
-    margin-bottom: 14px;
-  }
-
-  /* FACTS BAR */
-  .facts { background: var(--ink); color: var(--white); }
-  .facts ul {
-    list-style: none;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 48px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .facts li { padding: 28px 24px 30px 0; }
-  .facts li + li { padding-left: 24px; border-left: 1px solid var(--rule-inv); }
-  .facts b { display: block; font-weight: var(--fw-light); font-size: clamp(22px, 2.2vw, 30px); line-height: 1.2; }
-  .facts span {
-    display: block;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--muted-inv);
-    margin-top: 6px;
-  }
-
-  /* SECTIONS */
-  section { padding: 100px 0; }
-  .paper { background: var(--paper); }
-  .dark { background: var(--ink); color: var(--white); }
-  .dark .lead { color: rgba(251,250,247,.78); }
-
-  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-
-  .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 48px; flex-wrap: wrap; margin-bottom: 48px; }
-  .sec-head h2 { max-width: 18ch; }
-  .sec-head .lead { max-width: 520px; }
-
-  /* INTRO */
-  .intro-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 80px; align-items: start; }
-  .intro-grid h2 { max-width: 14ch; }
-  .intro-note {
-    margin-top: 32px;
-    padding-top: 20px;
-    border-top: 1px solid var(--rule);
-    font-size: var(--fs-small);
-    line-height: var(--lh-small);
-    color: var(--muted);
-    max-width: 640px;
-  }
-
-  /* MOSAIC */
-  .mosaic {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-auto-rows: 260px;
-    grid-auto-flow: dense;
-    gap: 4px;
-  }
-  .m-item {
-    position: relative;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    background: var(--paper-2);
-    cursor: zoom-in;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .m-item.t { grid-row: span 2; }
-  .m-item.w { grid-column: span 2; }
-  .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-  .m-item:hover img { transform: scale(1.03); }
-  .m-cap {
-    position: absolute;
-    left: 12px; bottom: 12px;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    background: rgba(43,39,37,.82);
-    color: var(--white);
-    padding: 5px 10px;
-  }
-  .mosaic-note { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted); margin-top: 16px; }
-
-  /* ARCHITEKTUR + AUSSTATTUNG */
-  .specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
-  .specs h3 { font-size: var(--fs-h1); line-height: var(--lh-h1); margin-bottom: 8px; }
-  .specs ul { list-style: none; margin-top: 16px; border-top: 1px solid var(--ink); }
-  .specs li {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    gap: 14px;
-    align-items: baseline;
-  }
-  .specs li::before {
-    content: counter(s, decimal-leading-zero);
-    counter-increment: s;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    color: var(--brick);
-    flex-shrink: 0;
-    width: 22px;
-  }
-  .specs ul { counter-reset: s; }
-  .specs-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-top: 64px; }
-  .specs-notes div { background: var(--paper); padding: 28px 32px; }
-  .specs-notes b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-h2); line-height: var(--lh-h2); }
-  .specs-notes p { color: var(--muted); margin-top: 8px; }
-
-  /* WOHNUNGSTYPEN */
-  .tabs { display: flex; border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; max-width: 100%; }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab {
-    flex-shrink: 0;
-    font-size: var(--fs-button);
-    font-weight: var(--fw-semibold);
-    color: var(--muted);
-    background: none;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    padding: 16px 22px;
-    cursor: pointer;
-    text-align: left;
-    white-space: nowrap;
-    transition: color .2s, border-color .2s;
-  }
-  .tab small { display: block; font-size: var(--fs-small); font-weight: var(--fw-regular); }
-  .tab:hover { color: var(--ink); }
-  .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--brick); }
-
-  .type {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-    gap: 72px;
-    align-items: start;
-    padding-top: 48px;
-    animation: fade .5s var(--ease);
-  }
-  .type[hidden] { display: none; }
-  @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-  .type h3 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
-  .type .sub { font-size: var(--fs-lead); color: var(--muted); margin-top: 6px; }
-  .kpis { display: grid; grid-template-columns: 1fr 1fr; margin-top: 28px; border-top: 1px solid var(--rule); }
-  .kpis div { padding: 16px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
-  .kpis div:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--rule); }
-  .kpis div:nth-child(even) { padding-left: 18px; }
-  .kpis b { display: block; font-weight: var(--fw-light); font-size: clamp(20px, 2vw, 26px); line-height: 1.2; }
-  .kpis span {
-    display: block;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-  .feat { list-style: none; margin-top: 24px; }
-  .feat li { padding: 9px 0 9px 24px; position: relative; border-bottom: 1px dashed var(--rule); color: var(--muted); }
-  .feat li::before { content: ''; position: absolute; left: 0; top: 20px; width: 9px; height: 1px; background: var(--brick); }
-  .type .actions { margin-top: 28px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-
-  .plate {
-    display: block;
-    width: 100%;
-    background: #fff;
-    border: 1px solid var(--rule);
-    padding: clamp(12px, 2.5vw, 32px);
-    position: relative;
-    cursor: zoom-in;
-  }
-  .plate img { width: 100%; height: auto; }
-  .plate-zoom {
-    position: absolute; top: 14px; right: 14px;
-    width: 40px; height: 40px;
-    background: var(--ink); color: #fff;
-    display: grid; place-items: center;
-    font-size: 18px; line-height: 1;
-    opacity: .85; transition: opacity .2s;
-  }
-  .plate:hover .plate-zoom { opacity: 1; }
-  .plate-meta { display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; font-size: var(--fs-small); color: var(--muted); margin-top: 12px; }
-
-  /* Vergleichstabelle */
-  .compare { margin-top: 88px; }
-  .compare h3 { margin-bottom: 20px; }
-  .units-table { width: 100%; border-collapse: collapse; }
-  .units-table th {
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: left;
-    padding: 14px 12px 14px 0;
-    border-bottom: 1px solid var(--ink);
-    vertical-align: bottom;
-  }
-  .units-table td {
-    padding: 16px 12px 16px 0;
-    border-bottom: 1px solid var(--rule);
-    color: var(--muted);
-    vertical-align: top;
-  }
-  .units-table td:first-child { color: var(--ink); font-weight: var(--fw-semibold); white-space: nowrap; }
-  .units-table .num { white-space: nowrap; }
-  .units-table a, .tlink {
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 1px;
-    white-space: nowrap;
-    transition: color 0.2s;
-  }
-  .units-table a:hover, .tlink:hover { color: var(--brick); }
-  .table-note { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted); margin-top: 16px; max-width: 640px; }
-
-  /* BUTTONS */
-  .btn {
-    font-family: var(--font);
-    font-size: var(--fs-button);
-    font-weight: var(--fw-semibold);
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    background: var(--ink);
-    color: var(--white);
-    border: 1px solid transparent;
-    border-radius: 0;
-    padding: 16px 28px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    transition: background-color 0.2s, color .2s;
-  }
-  .btn:hover { background: var(--brick); }
-  .btn .arr { transition: transform .25s var(--ease); }
-  .btn:hover .arr { transform: translateX(4px); }
-  .btn-brick { background: var(--brick); }
-  .btn-brick:hover { background: var(--brick-dk); }
-  .btn-inv { background: var(--white); color: var(--ink); }
-  .btn-inv:hover { background: var(--brick-lt); color: var(--ink); }
-
-  /* LAGE */
-  .location-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 80px; align-items: center; }
-  .location h2 { color: var(--white); margin-bottom: 24px; max-width: 16ch; }
-  .loc-facts { display: grid; grid-template-columns: 1fr 1fr; margin-top: 36px; border-top: 1px solid var(--rule-inv); }
-  .loc-facts div { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--rule-inv); }
-  .loc-facts div:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--rule-inv); }
-  .loc-facts b { display: block; font-weight: var(--fw-semibold); }
-  .loc-facts span { display: block; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted-inv); margin-top: 2px; }
-  .loc-quote { margin-top: 32px; font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-light); padding-left: 18px; border-left: 1px solid var(--brick-lt); max-width: 40ch; }
-  .location .actions { margin-top: 36px; }
-  .loc-img { background: #fff; padding: clamp(10px, 2vw, 24px); }
-  .loc-img img { width: 100%; height: auto; }
-  .loc-cap { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted-inv); margin-top: 12px; }
-
-  /* KONTAKT */
-  .contact-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 80px; align-items: start; }
-  .contact-info h2 { margin-bottom: 24px; }
-  .cards { margin-top: 36px; display: grid; gap: 8px; }
-  .cards a {
-    display: flex; justify-content: space-between; align-items: center; gap: 4px 16px; flex-wrap: wrap;
-    padding: 16px 20px;
-    background: var(--white);
-    border: 1px solid var(--rule);
-    color: var(--ink);
-    text-decoration: none;
-    transition: border-color .2s;
-  }
-  .cards a:hover { border-color: var(--brick); }
-  .cards span { font-size: var(--fs-label); font-weight: var(--fw-semibold); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--muted); }
-  .cards b { font-weight: var(--fw-regular); overflow-wrap: anywhere; }
-
-  form { background: var(--white); padding: clamp(20px, 4vw, 48px); border: 1px solid var(--rule); }
-  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
-  .f { margin-bottom: 22px; min-width: 0; }
-  .f > label {
-    display: block;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .f input, .f select, .f textarea {
-    width: 100%;
-    font-size: var(--fs-body);
-    color: var(--ink);
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid rgba(43,39,37,.4);
-    border-radius: 0;
-    padding: 9px 0;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .f select {
-    appearance: none; -webkit-appearance: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232b2725' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat right 3px center;
-    padding-right: 24px;
-    cursor: pointer;
-  }
-  .f input:focus, .f select:focus, .f textarea:focus { outline: none; border-color: var(--brick); box-shadow: 0 1px 0 var(--brick); }
-  .f textarea { min-height: 120px; resize: vertical; }
-  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted); margin-bottom: 26px; }
-  .consent input { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--brick); flex-shrink: 0; }
-  .consent a { color: var(--ink); }
-  .form-hint { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--muted); margin-top: 14px; }
-
-  /* FOOTER (wie fabrik.html) */
-  footer {
-    background: var(--ink);
-    color: var(--muted-inv);
-    padding: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  footer a {
-    color: var(--muted-inv);
-    text-decoration: none;
-    font-size: var(--fs-label);
-    font-weight: var(--fw-semibold);
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  footer a:hover { color: var(--white); }
-  .footer-links { display: flex; gap: 12px 32px; flex-wrap: wrap; }
-  .footer-logo img { height: 28px; width: auto; filter: brightness(0) invert(1); opacity: .6; }
-
-  /* LIGHTBOX (wie index.html) */
-  .lb { position: fixed; inset: 0; z-index: 200; background: rgba(24,21,19,.95); display: grid; place-items: center; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; padding: 72px 16px 32px; }
-  .lb.open { opacity: 1; visibility: visible; transition: opacity .3s, visibility 0s; }
-  .lb figure { max-width: min(94vw, 1400px); }
-  .lb img { max-width: 100%; max-height: 78vh; max-height: 78svh; object-fit: contain; margin-inline: auto; }
-  .lb.plan img { background: #fff; padding: 12px; }
-  .lb p { color: rgba(255,255,255,.75); font-size: var(--fs-small); text-align: center; margin-top: 16px; }
-  .lb-btn { position: absolute; width: 48px; height: 48px; border: 1px solid rgba(255,255,255,.35); background: none; color: #fff; font-size: 20px; cursor: pointer; }
-  .lb-btn:hover { background: rgba(255,255,255,.12); }
-  .lb-x { top: 18px; right: 18px; font-size: 24px; }
-  .lb-prev { top: 50%; left: 16px; transform: translateY(-50%); }
-  .lb-next { top: 50%; right: 16px; transform: translateY(-50%); }
-  .lb.single .lb-prev, .lb.single .lb-next { display: none; }
-
-  /* Reveal */
-  .r { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-  .r.in { opacity: 1; transform: none; }
-  .no-js .r { opacity: 1; transform: none; }
-
-  :focus-visible { outline: 2px solid var(--brick); outline-offset: 3px; }
-  .dark :focus-visible, .facts :focus-visible, .lb :focus-visible, footer :focus-visible { outline-color: var(--brick-lt); }
-  .m-item:focus-visible { outline-offset: -4px; outline-color: var(--white); box-shadow: inset 0 0 0 6px var(--brick); }
-  .skip { position: absolute; left: 16px; top: -64px; z-index: 300; background: var(--ink); color: var(--white); padding: 12px 18px; font-size: var(--fs-button); font-weight: var(--fw-semibold); text-decoration: none; }
-  .skip:focus { top: 12px; }
-  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    header { padding: 0 24px; }
-    .nav-left .nav-link-altbau,
-    .nav-left .nav-link-fabrik { display: none; }
-    .container, .facts ul { padding: 0 24px; }
-    .hero { height: calc(100svh - 72px - 150px); min-height: 420px; }
-    .hero-caption { left: 24px; bottom: 40px; }
-    section { padding: 72px 0; }
-    .facts ul { grid-template-columns: 1fr 1fr; }
-    .facts li, .facts li + li { padding: 18px 16px 18px 0; border-left: 0; }
-    .facts li:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--rule-inv); }
-    .facts li:nth-child(-n+2) { border-bottom: 1px solid var(--rule-inv); }
-    .intro-grid, .specs, .type, .location-grid, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-    .specs-notes { grid-template-columns: 1fr; margin-top: 40px; }
-    .type > div:last-child { order: -1; }
-    .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 200px; }
-    .compare { margin-top: 64px; }
-    footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
-  }
-
-  @media (max-width: 700px) {
-    /* Vergleich als gestapelte Karten */
-    .units-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    .units-table, .units-table tbody, .units-table tr, .units-table td { display: block; width: 100%; }
-    .units-table tr { border-top: 1px solid var(--ink); padding: 8px 0 16px; }
-    .units-table td { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 7px 0; border-bottom: 0; white-space: normal; }
-    .units-table td:first-child { font-size: var(--fs-h2); white-space: normal; }
-    .units-table td::before {
-      content: attr(data-label);
-      font-size: var(--fs-label);
-      font-weight: var(--fw-semibold);
-      letter-spacing: var(--ls-label);
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-top: 2px;
-    }
-    .units-table td:first-child::before { content: none; }
-    .units-table td > a { justify-self: start; }
-    .units-table td:first-child { display: block; }
-  }
-
-  @media (max-width: 520px) {
-    .f-row { grid-template-columns: 1fr; }
-    .lb-prev, .lb-next { top: auto; bottom: 16px; transform: none; }
-    .specs-notes div { padding: 22px 20px; }
-  }
-
-  @media (max-width: 480px) {
-    header { padding: 0 16px; }
-    nav ul, .nav-left, .nav-right { gap: 14px; }
-    .nav-logo img { height: 22px; }
-    .container, .facts ul { padding: 0 16px; }
-    .hero-caption { left: 16px; }
-    .mosaic { grid-auto-rows: 160px; }
-    .tab { padding: 14px 16px; }
-    .kpis div:nth-child(even) { padding-left: 14px; }
-    footer { padding: 40px 16px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .r { opacity: 1; transform: none; transition: none; }
-    .type { animation: none; }
-    *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
-    .m-item:hover img { transform: none; }
-  }
+/* Neubau */
+.intro-note { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 7vw, 112px); }
+.specs h3 { font-size: var(--fs-h1); line-height: 1.2; }
+.specs-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(40px, 7vw, 112px); margin-top: clamp(48px, 6vw, 72px); }
+.specs-notes div { padding-top: 20px; border-top: 1px solid var(--rule); }
+.specs-notes b { display: block; font-size: var(--fs-h2); line-height: 1.3; }
+.specs-notes p { color: var(--muted); margin-top: 6px; }
+.type { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.type[hidden] { display: none; }
+.type h3 { font-size: var(--fs-h1); line-height: 1.2; }
+.type .sub { font-size: var(--fs-lead); color: var(--muted); margin-top: 6px; }
+.compare { margin-top: clamp(64px, 8vw, 96px); }
+.compare h3 { margin-bottom: 20px; }
+.table td:first-child { white-space: nowrap; }
+.loc-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; margin-top: 32px; border-top: 1px solid var(--rule); }
+.loc-facts div { padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.loc-facts b { display: block; }
+.loc-facts span { display: block; font-size: var(--fs-small); line-height: 1.5; color: var(--muted); margin-top: 2px; }
+.loc-quote { margin-top: 32px; font-size: var(--fs-h2); line-height: 1.3; font-weight: 300; padding-left: 18px; border-left: 1px solid var(--rule-2); max-width: 40ch; }
+.loc-cap { margin-top: 12px; }
+.location h2 { margin-bottom: 24px; max-width: 16ch; }
+@media (max-width: 900px) {
+  .specs, .specs-notes, .type { grid-template-columns: 1fr; }
+  .type > div:last-child { order: -1; }
+}
+@media (max-width: 480px) { .loc-facts { grid-template-columns: 1fr; } }
 </style>
 </head>
-<body class="no-js">
+<body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
 
-<!-- HEADER -->
-<header>
-  <nav aria-label="Gebäude">
-    <ul class="nav-left">
-      <li><a href="https://www.lausitzerquartier.de/altbau/" class="nav-link-altbau">Altbau</a></li>
-      <li><a href="neubau.html" class="nav-link-neubau active" aria-current="page">Neubau</a></li>
-      <li><a href="fabrik.html" class="nav-link-fabrik">Fabrik</a></li>
-    </ul>
-  </nav>
-  <a href="index.html" class="nav-logo" aria-label="Lausitzer Quartier – Startseite">
-    <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38">
-  </a>
-  <nav aria-label="Service">
-    <ul class="nav-right">
-      <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="https://www.lausitzerquartier.de/en/neubau/" lang="en" hreflang="en">en</a></li>
-    </ul>
-  </nav>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="index.html" aria-label="Lausitzer Quartier – Startseite"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38"></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="index.html">Quartier</a></li>
+        <li><a href="altbau.html">Altbau</a></li>
+        <li><a href="neubau.html" aria-current="page">Neubau</a></li>
+        <li><a href="fabrik.html">Fabrik</a></li>
+        <li><a href="index.html#lage">Lage</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#kontakt">Kontakt</a>
+  </div>
 </header>
 
 <main id="main">
 
-<!-- HERO -->
-<section class="hero" aria-label="Der Neubau">
-  <picture>
-    <source media="(max-width: 700px) and (orientation: portrait)"
-            srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01-720x1033.jpg 720w,
-                    https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01-1000x1435.jpg 1000w"
-            sizes="100vw" width="1000" height="1435">
-    <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1400x976.jpg"
-         srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-800x558.jpg 800w,
-                 https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1200x836.jpg 1200w,
-                 https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1400x976.jpg 1400w,
-                 https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03.jpg 2000w"
-         sizes="100vw" width="1400" height="976" fetchpriority="high"
-         alt="Visualisierung eines Wohnraums im Neubau: graues Sofa, dunkles Parkett, bodentiefe Fenstertür mit Vorhängen zum Balkon">
-  </picture>
-  <div class="hero-caption">
-    <p>Lausitzer Straße 34 · Berlin-Kreuzberg</p>
-    <h1>Der<br><em>Neubau</em></h1>
+<!-- SEITENKOPF -->
+<section class="phero" aria-label="Der Neubau">
+  <div class="wrap">
+    <div class="phero-text">
+      <div>
+        <span class="label">Lausitzer Straße 34 · Berlin-Kreuzberg</span>
+        <h1>Der <em>Neubau</em></h1>
+      </div>
+      <p class="lead">Klinkerneubau im zweiten Hinterhof mit 13 Eigentumswohnungen in sechs Wohnungstypen.</p>
+    </div>
+    <div class="phero-img">
+      <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1400x976.jpg"
+           srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-800x558.jpg 800w,
+                   https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1200x836.jpg 1200w,
+                   https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1400x976.jpg 1400w,
+                   https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03.jpg 2000w"
+           sizes="(max-width: 1280px) 100vw, 1140px" width="1400" height="976" fetchpriority="high"
+           alt="Visualisierung eines Wohnraums im Neubau: graues Sofa, dunkles Parkett, bodentiefe Fenstertür mit Vorhängen zum Balkon">
+    </div>
+    <ul class="facts" aria-label="Der Neubau in Zahlen">
+      <li><b>13</b><span>Wohnungen</span></li>
+      <li><b>6</b><span>Wohnungstypen</span></li>
+      <li><b>ca. 47–99 m²</b><span>Wohnfläche</span></li>
+      <li><b>Provisionsfrei</b><span>Direkt vom Entwickler</span></li>
+    </ul>
   </div>
 </section>
 
-<!-- FACTS -->
-<div class="facts">
-  <ul aria-label="Der Neubau in Zahlen">
-    <li><b>13</b><span>Wohnungen</span></li>
-    <li><b>6</b><span>Wohnungstypen</span></li>
-    <li><b>ca. 47–99 m²</b><span>Wohnfläche</span></li>
-    <li><b>Provisionsfrei</b><span>Direkt vom Entwickler</span></li>
-  </ul>
-</div>
-
 <!-- INTRO -->
-<section id="neubau">
-  <div class="container intro-grid">
-    <div class="r">
+<section id="neubau" class="no-rule">
+  <div class="wrap cols">
+    <div>
       <span class="label">Zweiter Hinterhof · Industriedesign</span>
       <h2>Wohnen im <em>stillen Hof</em></h2>
     </div>
-    <div class="r">
+    <div>
       <p class="lead">Berliner Höfe haben eine lange Tradition. Früher spielte sich das halbe Leben hier ab – es wurde gearbeitet, gewaschen und über Neuigkeiten geredet. Heute sind sie Ruheoasen und verbergen so manchen Schatz.</p>
       <p class="lead">Im zweiten Hinterhof des Lausitzer Quartiers entsteht ein Neubau im Industriedesign, der moderne und stilvolle Wohnungen mit einem ausgefeilten Designkonzept bietet.</p>
-      <p class="intro-note">Klinkerneubau mit 13 Wohnungen in sechs Wohnungstypen, vom 1-Zimmer-Studio bis zur 4,5-Zimmer-Wohnung mit Garten.</p>
+      <p class="note intro-note">Klinkerneubau mit 13 Wohnungen in sechs Wohnungstypen, vom 1-Zimmer-Studio bis zur 4,5-Zimmer-Wohnung mit Garten.</p>
     </div>
   </div>
 </section>
 
 <!-- GALERIE -->
-<section class="paper" id="galerie">
-  <div class="container">
-    <div class="sec-head r">
+<section id="galerie">
+  <div class="wrap">
+    <div class="head">
       <div>
         <span class="label">Visualisierungen · Designkonzept</span>
         <h2>Moderne Architektur trifft auf <em>hochwertige Ausstattung</em></h2>
@@ -686,72 +112,72 @@
       <p class="lead">Mit unserem durchdachten Designkonzept schenken wir dem Wohnraum eine eindrucksvolle Atmosphäre. Alle Gestaltungsmöglichkeiten für die Wohnungen und Materialproben für die Inneneinrichtung sind in unserem Showroom in der Lausitzer Straße 34 erlebbar.</p>
     </div>
 
-    <div class="mosaic" aria-label="Bildergalerie Neubau, zum Vergrößern auswählen">
-      <button type="button" class="m-item t" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01.jpg" data-cap="Offene Wohnküche mit bodentiefen Fenstern">
+    <div class="gallery" aria-label="Bildergalerie Neubau, zum Vergrößern auswählen">
+      <button type="button" class="g-item t" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01.jpg" data-cap="Offene Wohnküche mit bodentiefen Fenstern">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01-500x717.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01-500x717.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_01-800x1148.jpg 800w"
              sizes="(max-width: 900px) 50vw, 25vw" width="500" height="717" loading="lazy"
              alt="Offene Wohnküche mit Edelstahlküche, Schienenstrahlern und bodentiefen Fenstern">
-        <span class="m-cap">Wohnküche</span>
+        <span class="vh">Wohnküche</span>
       </button>
-      <button type="button" class="m-item w" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_06.jpg" data-cap="Essbereich mit Blick in den Flur">
+      <button type="button" class="g-item w" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_06.jpg" data-cap="Essbereich mit Blick in den Flur">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_06-800x558.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_06-800x558.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_06-1200x836.jpg 1200w"
              sizes="(max-width: 900px) 100vw, 50vw" width="800" height="558" loading="lazy"
              alt="Essbereich mit dunklem Holztisch und Holzstühlen, im Hintergrund eine Glastür mit schwarzem Rahmen">
-        <span class="m-cap">Essbereich</span>
+        <span class="vh">Essbereich</span>
       </button>
-      <button type="button" class="m-item t" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_02.jpg" data-cap="Flur mit raumhohen Einbauschränken">
+      <button type="button" class="g-item t" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_02.jpg" data-cap="Flur mit raumhohen Einbauschränken">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_02-500x660.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_02-500x660.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_02-720x950.jpg 720w"
              sizes="(max-width: 900px) 50vw, 25vw" width="500" height="660" loading="lazy"
              alt="Heller Flur mit raumhohen Einbauschränken in dunklem Holz und flächenbündigen Türen">
-        <span class="m-cap">Flur</span>
+        <span class="vh">Flur</span>
       </button>
-      <button type="button" class="m-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_04.jpg" data-cap="Bad mit Unterputzarmaturen und gefliester Dusche">
+      <button type="button" class="g-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_04.jpg" data-cap="Bad mit Unterputzarmaturen und gefliester Dusche">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_04-500x660.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_04-500x660.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_04-720x950.jpg 720w"
              sizes="(max-width: 900px) 50vw, 25vw" width="500" height="660" loading="lazy"
              alt="Bad mit Waschtisch, schwarzen Unterputzarmaturen, Wand-WC und gefliester Dusche">
-        <span class="m-cap">Bad</span>
+        <span class="vh">Bad</span>
       </button>
-      <button type="button" class="m-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_08.jpg" data-cap="Küchenzeile mit offenem Regal">
+      <button type="button" class="g-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_08.jpg" data-cap="Küchenzeile mit offenem Regal">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_08-500x660.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_08-500x660.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_08-720x950.jpg 720w"
              sizes="(max-width: 900px) 50vw, 25vw" width="500" height="660" loading="lazy"
              alt="Küchenzeile mit Steinrückwand, offenem Wandregal mit dunkler Keramik und Barhockern im Vordergrund">
-        <span class="m-cap">Küche</span>
+        <span class="vh">Küche</span>
       </button>
-      <button type="button" class="m-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_05.jpg" data-cap="Schlafzimmer mit bodentiefem Fenster">
+      <button type="button" class="g-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_05.jpg" data-cap="Schlafzimmer mit bodentiefem Fenster">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_05-500x717.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_05-500x717.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_05-800x1148.jpg 800w"
              sizes="(max-width: 900px) 50vw, 25vw" width="500" height="717" loading="lazy"
              alt="Schlafzimmer mit Bett, Nachttisch und bodentiefem Fenster mit Vorhang">
-        <span class="m-cap">Schlafen</span>
+        <span class="vh">Schlafen</span>
       </button>
-      <button type="button" class="m-item w" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03.jpg" data-cap="Wohnraum mit Fenstertür zum Balkon">
+      <button type="button" class="g-item w" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03.jpg" data-cap="Wohnraum mit Fenstertür zum Balkon">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-800x558.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-800x558.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/05/Lau34_Neubau_03-1200x836.jpg 1200w"
              sizes="(max-width: 900px) 100vw, 50vw" width="800" height="558" loading="lazy"
              alt="Wohnraum mit grauem Sofa, Beistelltisch und Fenstertür zum Balkon">
-        <span class="m-cap">Wohnen</span>
+        <span class="vh">Wohnen</span>
       </button>
-      <button type="button" class="m-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_07.jpg" data-cap="Essplatz in der Wohnküche">
+      <button type="button" class="g-item" data-g data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_07.jpg" data-cap="Essplatz in der Wohnküche">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_07-500x717.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_07-500x717.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/06/Lau34_Neubau_07-800x1148.jpg 800w"
              sizes="(max-width: 900px) 50vw, 25vw" width="500" height="717" loading="lazy"
              alt="Essplatz mit Holzstühlen und dunklem Tisch, darauf eine Vase mit Zweigen">
-        <span class="m-cap">Essplatz</span>
+        <span class="vh">Essplatz</span>
       </button>
     </div>
-    <p class="mosaic-note">Visualisierungen mit beispielhafter Möblierung.</p>
+    <p class="note" style="margin-top: 16px;">Visualisierungen mit beispielhafter Möblierung.</p>
   </div>
 </section>
 
 <!-- ARCHITEKTUR + AUSSTATTUNG -->
 <section id="ausstattung">
-  <div class="container">
-    <div class="sec-head r">
+  <div class="wrap">
+    <div class="head">
       <div>
         <span class="label">Architektur · Ausstattung</span>
         <h2>Ein gesamtheitliches <em>Designkonzept</em></h2>
@@ -759,9 +185,9 @@
       <p class="lead">Wir legen großen Wert auf Individualität. Falls gewünscht, gibt es für jeden Wohnungstyp eine barrierefreie Planung.</p>
     </div>
     <div class="specs">
-      <div class="r">
+      <div>
         <h3>Die <em>Architektur</em></h3>
-        <ul>
+        <ul class="list">
           <li>Klinkerneubau mit nur 13 Wohnungen</li>
           <li>Große bodentiefe Fensteranlagen</li>
           <li>Wohnungen inkl. Terrassen und Balkone</li>
@@ -770,9 +196,9 @@
           <li>Gesamtheitliches Designkonzept</li>
         </ul>
       </div>
-      <div class="r">
+      <div>
         <h3>Die <em>Ausstattung</em></h3>
-        <ul>
+        <ul class="list">
           <li>Echtholzparkett</li>
           <li>Design-Badobjekte und Unterputzarmaturen</li>
           <li>Großformatige Bodenfliesen in Betonoptik</li>
@@ -782,7 +208,7 @@
         </ul>
       </div>
     </div>
-    <div class="specs-notes r">
+    <div class="specs-notes">
       <div>
         <b>Showroom vor Ort</b>
         <p>Gestaltungsmöglichkeiten und Materialproben für die Inneneinrichtung können Sie in der Lausitzer Straße 34 ansehen.</p>
@@ -796,9 +222,9 @@
 </section>
 
 <!-- WOHNUNGSTYPEN -->
-<section class="paper" id="wohnungstypen">
-  <div class="container">
-    <div class="sec-head r">
+<section id="wohnungstypen">
+  <div class="wrap">
+    <div class="head">
       <div>
         <span class="label">13 Wohnungen · 6 Typen</span>
         <h2>Die <em>Wohnungstypen</em></h2>
@@ -816,7 +242,7 @@
     </div>
 
     <!-- Typ A -->
-    <div class="type" role="tabpanel" id="p-a" aria-labelledby="t-a" tabindex="0">
+    <div class="panel type" role="tabpanel" id="p-a" aria-labelledby="t-a" tabindex="0">
       <div>
         <span class="label">Erdgeschoss · WE 44</span>
         <h3>Typ <em>A</em></h3>
@@ -827,12 +253,12 @@
           <div><b>EG</b><span>Geschoss</span></div>
           <div><b>Auf Anfrage</b><span>Preis</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Eigener Eingang vom Hof</li>
           <li>Zusammenlegung mit Typ E möglich</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-brick" href="#kontakt" data-interest="Typ A">Typ A anfragen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" href="#kontakt" data-interest="Typ A">Typ A anfragen <span class="arr" aria-hidden="true">→</span></a>
           <a class="tlink" href="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/WE_44.pdf" target="_blank" rel="noopener">Grundriss WE 44 (PDF)</a>
         </div>
       </div>
@@ -842,14 +268,13 @@
                srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-02-angepasst-500x333.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-02-angepasst-800x533.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-02-angepasst-1000x667.jpg 1000w"
                sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="667" loading="lazy"
                alt="Grundrissdarstellung Wohnungstyp A, 1-Zimmer-Studio">
-          <span class="plate-zoom" aria-hidden="true">+</span>
         </button>
         <div class="plate-meta"><span>Beispiel WE 44 · 47,30 m²</span><span>Grundrissdarstellung</span></div>
       </div>
     </div>
 
     <!-- Typ B -->
-    <div class="type" role="tabpanel" id="p-b" aria-labelledby="t-b" tabindex="0" hidden>
+    <div class="panel type" role="tabpanel" id="p-b" aria-labelledby="t-b" tabindex="0" hidden>
       <div>
         <span class="label">Erdgeschoss · WE 43</span>
         <h3>Typ <em>B</em></h3>
@@ -860,13 +285,13 @@
           <div><b>2</b><span>Bäder</span></div>
           <div><b>Auf Anfrage</b><span>Preis</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Im Erdgeschoss mit Terrasse</li>
           <li>Exklusive Gartennutzung</li>
           <li>Zwei Bäder</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-brick" href="#kontakt" data-interest="Typ B">Typ B anfragen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" href="#kontakt" data-interest="Typ B">Typ B anfragen <span class="arr" aria-hidden="true">→</span></a>
           <a class="tlink" href="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/WE_43.pdf" target="_blank" rel="noopener">Grundriss WE 43 (PDF)</a>
         </div>
       </div>
@@ -876,14 +301,13 @@
                srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-0.02e-500x333.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-0.02e-800x533.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-0.02e-1000x667.jpg 1000w"
                sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="667" loading="lazy"
                alt="Grundrissdarstellung Wohnungstyp B, 4,5-Zimmer-Wohnung mit Terrasse">
-          <span class="plate-zoom" aria-hidden="true">+</span>
         </button>
         <div class="plate-meta"><span>Beispiel WE 43 · 98,62 m²</span><span>Grundrissdarstellung</span></div>
       </div>
     </div>
 
     <!-- Typ C -->
-    <div class="type" role="tabpanel" id="p-c" aria-labelledby="t-c" tabindex="0" hidden>
+    <div class="panel type" role="tabpanel" id="p-c" aria-labelledby="t-c" tabindex="0" hidden>
       <div>
         <span class="label">1.–4. OG · WE 46, 49, 52, 54</span>
         <h3>Typ <em>C</em></h3>
@@ -894,13 +318,13 @@
           <div><b>1.–4. OG</b><span>Geschoss</span></div>
           <div><b>Auf Anfrage</b><span>Preis</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Im ruhigen Innenhof gelegen</li>
           <li>Mit Westbalkon</li>
           <li>Vier Wohnungen dieses Typs</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-brick" href="#kontakt" data-interest="Typ C">Typ C anfragen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" href="#kontakt" data-interest="Typ C">Typ C anfragen <span class="arr" aria-hidden="true">→</span></a>
           <a class="tlink" href="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/WE_46.pdf" target="_blank" rel="noopener">Grundriss WE 46 (PDF)</a>
         </div>
       </div>
@@ -910,14 +334,13 @@
                srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-04-500x333.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-04-800x533.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-04-1000x667.jpg 1000w"
                sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="667" loading="lazy"
                alt="Grundrissdarstellung Wohnungstyp C, 3-Zimmer-Wohnung mit Westbalkon">
-          <span class="plate-zoom" aria-hidden="true">+</span>
         </button>
         <div class="plate-meta"><span>Beispiel WE 46 · 76,29 m²</span><span>Grundrissdarstellung</span></div>
       </div>
     </div>
 
     <!-- Typ D -->
-    <div class="type" role="tabpanel" id="p-d" aria-labelledby="t-d" tabindex="0" hidden>
+    <div class="panel type" role="tabpanel" id="p-d" aria-labelledby="t-d" tabindex="0" hidden>
       <div>
         <span class="label">WE 47, 50</span>
         <h3>Typ <em>D</em></h3>
@@ -928,13 +351,13 @@
           <div><b>2</b><span>Bäder</span></div>
           <div><b>Auf Anfrage</b><span>Preis</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Mit Ostbalkon</li>
           <li>Beidseitig belichtet</li>
           <li>Verschiedene Raumoptionen möglich</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-brick" href="#kontakt" data-interest="Typ D">Typ D anfragen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" href="#kontakt" data-interest="Typ D">Typ D anfragen <span class="arr" aria-hidden="true">→</span></a>
           <a class="tlink" href="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/WE_47.pdf" target="_blank" rel="noopener">Grundriss WE 47 (PDF)</a>
         </div>
       </div>
@@ -944,14 +367,13 @@
                srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-1.05-final-Kopie-500x333.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-1.05-final-Kopie-800x533.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-1.05-final-Kopie-1000x667.jpg 1000w"
                sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="667" loading="lazy"
                alt="Grundrissdarstellung Wohnungstyp D, 4-Zimmer-Wohnung mit Ostbalkon">
-          <span class="plate-zoom" aria-hidden="true">+</span>
         </button>
         <div class="plate-meta"><span>Beispiel WE 47 · 81,30 m²</span><span>Grundrissdarstellung</span></div>
       </div>
     </div>
 
     <!-- Typ E -->
-    <div class="type" role="tabpanel" id="p-e" aria-labelledby="t-e" tabindex="0" hidden>
+    <div class="panel type" role="tabpanel" id="p-e" aria-labelledby="t-e" tabindex="0" hidden>
       <div>
         <span class="label">EG–2. OG · WE 45, 48, 51</span>
         <h3>Typ <em>E</em></h3>
@@ -962,13 +384,13 @@
           <div><b>EG–2. OG</b><span>Geschoss</span></div>
           <div><b>Auf Anfrage</b><span>Preis</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Im EG mit Terrasse und exklusiver Gartennutzung</li>
           <li>Im 1. und 2. OG mit Südbalkon</li>
           <li>Verschiedene Raumoptionen möglich</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-brick" href="#kontakt" data-interest="Typ E">Typ E anfragen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" href="#kontakt" data-interest="Typ E">Typ E anfragen <span class="arr" aria-hidden="true">→</span></a>
           <a class="tlink" href="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/WE_48.pdf" target="_blank" rel="noopener">Grundriss WE 48 (PDF)</a>
         </div>
       </div>
@@ -978,14 +400,13 @@
                srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-03-500x333.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-03-800x533.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-03-1000x667.jpg 1000w"
                sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="667" loading="lazy"
                alt="Grundrissdarstellung Wohnungstyp E, 2,5- bis 3-Zimmer-Wohnung">
-          <span class="plate-zoom" aria-hidden="true">+</span>
         </button>
         <div class="plate-meta"><span>Beispiel WE 48 · 70,64 m²</span><span>Grundrissdarstellung</span></div>
       </div>
     </div>
 
     <!-- Typ F -->
-    <div class="type" role="tabpanel" id="p-f" aria-labelledby="t-f" tabindex="0" hidden>
+    <div class="panel type" role="tabpanel" id="p-f" aria-labelledby="t-f" tabindex="0" hidden>
       <div>
         <span class="label">3.–4. OG · WE 53, 55</span>
         <h3>Typ <em>F</em></h3>
@@ -996,13 +417,13 @@
           <div><b>2</b><span>Zimmer</span></div>
           <div><b>Auf Anfrage</b><span>Preis</span></div>
         </div>
-        <ul class="feat">
+        <ul class="list">
           <li>Im 3. OG mit Dachterrasse</li>
           <li>Im 4. OG mit Südbalkon</li>
           <li>Auch als Zusammenlegung mit 4,5 Zimmern und 3 Bädern möglich</li>
         </ul>
         <div class="actions">
-          <a class="btn btn-brick" href="#kontakt" data-interest="Typ F">Typ F anfragen <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" href="#kontakt" data-interest="Typ F">Typ F anfragen <span class="arr" aria-hidden="true">→</span></a>
           <a class="tlink" href="https://www.lausitzerquartier.de/wp-content/uploads/2022/06/WE_55.pdf" target="_blank" rel="noopener">Grundriss WE 55 (PDF)</a>
         </div>
       </div>
@@ -1012,16 +433,15 @@
                srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-05-500x333.jpg 500w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-05-800x533.jpg 800w, https://www.lausitzerquartier.de/wp-content/uploads/2022/04/Lau34-Neubau-Wohnungstypen-05-1000x667.jpg 1000w"
                sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="667" loading="lazy"
                alt="Grundrissdarstellung Wohnungstyp F, 2-Zimmer-Wohnung">
-          <span class="plate-zoom" aria-hidden="true">+</span>
         </button>
         <div class="plate-meta"><span>Beispiel WE 55 · 57,36 m²</span><span>Grundrissdarstellung</span></div>
       </div>
     </div>
 
     <!-- Vergleich -->
-    <div class="compare r">
+    <div class="compare">
       <h3>Alle Typen <em>im Überblick</em></h3>
-      <table class="units-table">
+      <table class="table">
         <caption class="vh">Wohnungstypen im Neubau im Vergleich</caption>
         <thead>
           <tr>
@@ -1098,15 +518,15 @@
           </tr>
         </tbody>
       </table>
-      <p class="table-note">Auszugsweise Übersicht, alle Flächen circa. Weitere Grundrisse und Raumoptionen erhalten Sie auf Anfrage.</p>
+      <p class="note" style="margin-top: 16px;">Auszugsweise Übersicht, alle Flächen circa. Weitere Grundrisse und Raumoptionen erhalten Sie auf Anfrage.</p>
     </div>
   </div>
 </section>
 
 <!-- LAGE IM HOF -->
-<section class="dark location" id="lage">
-  <div class="container location-grid">
-    <div class="r">
+<section class="location" id="lage">
+  <div class="wrap cols center">
+    <div>
       <span class="label">Lage im Hof</span>
       <h2>Ein ruhiger Ort <em>mitten in der Stadt</em></h2>
       <p class="lead">Die direkte Wohnumgebung ist sehr leise und privat, obwohl die zentrale Lage in Kreuzberg anderes vermuten lassen würde. Es gibt einen privaten Zugang zum Gebäude und gemeinschaftliche Aufenthaltsmöglichkeiten.</p>
@@ -1119,36 +539,35 @@
       </div>
       <p class="loc-quote">Das Lausitzer Quartier spiegelt die Vielfalt und <em>Kreativität Berlins</em> wider.</p>
       <div class="actions">
-        <a class="btn btn-inv" href="#kontakt" data-interest="Neubau allgemein">Besichtigung vereinbaren <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn" href="#kontakt" data-interest="Neubau allgemein">Besichtigung vereinbaren <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
-    <figure class="r">
+    <figure>
       <button type="button" class="loc-img plate" data-lb="https://www.lausitzerquartier.de/wp-content/uploads/2022/07/Lau34_Illustration_Neubau_mobile-1400x972.jpg" data-cap="Lage des Neubaus im zweiten Hinterhof, Skizze" aria-label="Skizze zur Lage des Neubaus vergrößern">
         <img src="https://www.lausitzerquartier.de/wp-content/uploads/2022/07/Lau34_Illustration_Neubau_mobile-1000x694.jpg"
              srcset="https://www.lausitzerquartier.de/wp-content/uploads/2022/07/Lau34_Illustration_Neubau_mobile-720x500.jpg 720w, https://www.lausitzerquartier.de/wp-content/uploads/2022/07/Lau34_Illustration_Neubau_mobile-1000x694.jpg 1000w, https://www.lausitzerquartier.de/wp-content/uploads/2022/07/Lau34_Illustration_Neubau_mobile-1400x972.jpg 1400w"
              sizes="(max-width: 900px) 100vw, 55vw" width="1000" height="694" loading="lazy"
              alt="Bleistiftskizze des Grundstücks aus der Vogelperspektive: der Neubau mit begrünten Dächern im hinteren Hof, davor Fabrik und Altbauten, rechts die Lausitzer Straße">
-        <span class="plate-zoom" aria-hidden="true">+</span>
       </button>
-      <figcaption class="loc-cap">Der Neubau im zweiten Hinterhof, abgewandt von der Lausitzer Straße.</figcaption>
+      <figcaption class="note loc-cap">Der Neubau im zweiten Hinterhof, abgewandt von der Lausitzer Straße.</figcaption>
     </figure>
   </div>
 </section>
 
 <!-- KONTAKT -->
-<section class="paper" id="kontakt">
-  <div class="container contact-inner">
-    <div class="contact-info r">
+<section id="kontakt">
+  <div class="wrap cols">
+    <div>
       <span class="label">Kontakt</span>
       <h2>Ihr persönlicher <em>Besichtigungstermin</em></h2>
-      <p class="lead">Erwerben Sie Ihre Eigentumswohnung direkt und provisionsfrei vom Projektentwickler. Vereinbaren Sie Ihren persönlichen Besichtigungstermin.</p>
-      <div class="cards">
-        <a href="tel:+4930208480216"><span>Telefon</span><b>+49 30 208480216</b></a>
-        <a href="mailto:kontakt@tiedemann-gruppe.de"><span>E-Mail</span><b>kontakt@tiedemann-gruppe.de</b></a>
-        <a href="fabrik.html"><span>Auch im Quartier</span><b>Die Fabrik ansehen →</b></a>
-      </div>
+      <p class="lead" style="margin-top: 24px;">Erwerben Sie Ihre Eigentumswohnung direkt und provisionsfrei vom Projektentwickler. Vereinbaren Sie Ihren persönlichen Besichtigungstermin.</p>
+      <ul class="clist">
+        <li><a href="tel:+4930208480216"><span>Telefon</span><b>+49 30 208480216</b></a></li>
+        <li><a href="mailto:kontakt@tiedemann-gruppe.de"><span>E-Mail</span><b>kontakt@tiedemann-gruppe.de</b></a></li>
+        <li><a href="fabrik.html"><span>Auch im Quartier</span><b>Die Fabrik ansehen →</b></a></li>
+      </ul>
     </div>
-    <form class="r" id="form" action="#" method="post">
+    <form class="form" id="form" action="#" method="post">
       <div class="f">
         <label for="interesse">Ich interessiere mich für</label>
         <select id="interesse" name="interesse">
@@ -1187,7 +606,7 @@
       </div>
       <div class="f"><label for="msg">Nachricht</label><textarea id="msg" name="nachricht" placeholder="Wunschtermin für eine Besichtigung, Fragen zu den Wohnungstypen …"></textarea></div>
       <label class="consent"><input type="checkbox" name="datenschutz" required> <span>Ich stimme der <a href="https://www.lausitzerquartier.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> zu.*</span></label>
-      <button class="btn btn-brick" type="submit">Anfrage senden <span class="arr" aria-hidden="true">→</span></button>
+      <button class="btn" type="submit">Anfrage senden <span class="arr" aria-hidden="true">→</span></button>
       <p class="form-hint">* Pflichtfelder</p>
     </form>
   </div>
@@ -1195,18 +614,28 @@
 
 </main>
 
-<!-- FOOTER -->
-<footer>
-  <a href="index.html" class="footer-logo" aria-label="Lausitzer Quartier – Startseite">
-    <img src="https://www.lausitzerquartier.de/wp-content/uploads/2021/01/logo-1.svg" alt="Lausitzer Quartier" width="166" height="28">
-  </a>
-  <nav class="footer-links" aria-label="Fußzeile">
-    <a href="index.html">Startseite</a>
-    <a href="fabrik.html">Die Fabrik</a>
-    <a href="https://www.lausitzerquartier.de/datenschutz/">Datenschutz</a>
-    <a href="https://www.lausitzerquartier.de/impressum/">Impressum</a>
-    <a href="https://www.tiedemann-gruppe.de" target="_blank" rel="noopener">Tiedemann Gruppe</a>
-  </nav>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="logo" href="index.html" aria-label="Lausitzer Quartier – Startseite"><img src="Willkommen%20in%20Kreuzberg%20-%20Lausitzer%20Quartier_files/logo-1.svg" alt="Lausitzer Quartier" width="225" height="38" loading="lazy"></a>
+      <nav aria-label="Gebäude">
+        <a href="index.html">Quartier</a>
+        <a href="altbau.html">Altbau</a>
+        <a href="neubau.html" aria-current="page">Neubau</a>
+        <a href="fabrik.html">Fabrik</a>
+        <a href="index.html#lage">Lage</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <a href="https://www.tiedemann-gruppe.de" target="_blank" rel="noopener">Tiedemann Gruppe</a> · Lausitzer Straße 34, Berlin-Kreuzberg</span>
+      <nav aria-label="Rechtliches und Sprache">
+        <a href="https://www.lausitzerquartier.de/impressum/">Impressum</a>
+        <a href="https://www.lausitzerquartier.de/datenschutz/">Datenschutz</a>
+        <a href="https://www.lausitzerquartier.de/en/neubau/" lang="en" hreflang="en">English</a>
+      </nav>
+    </div>
+  </div>
 </footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Bildansicht" aria-hidden="true">
@@ -1216,98 +645,7 @@
   <figure><img id="lbImg" alt=""><p id="lbCap"></p></figure>
 </div>
 
-<script>
-(() => {
-  document.body.classList.remove('no-js');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Reveal
-  if ('IntersectionObserver' in window && !reduce) {
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.r').forEach(el => io.observe(el));
-  } else {
-    document.querySelectorAll('.r').forEach(el => el.classList.add('in'));
-  }
-
-  // Wohnungstypen-Tabs (WAI-ARIA, Pfeiltasten, Pos1/Ende)
-  const tabs = [...document.querySelectorAll('.tab')];
-  function select(id, focus) {
-    tabs.forEach(t => {
-      const on = t.id === id;
-      t.setAttribute('aria-selected', on);
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      if (on && focus) { t.focus(); t.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
-    });
-  }
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => select(t.id));
-    t.addEventListener('keydown', e => {
-      let n = null;
-      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-      else if (e.key === 'Home') n = 0;
-      else if (e.key === 'End') n = tabs.length - 1;
-      if (n !== null) { e.preventDefault(); select(tabs[n].id, true); }
-    });
-  });
-
-  // Interesse im Formular vorwählen
-  const interesse = document.getElementById('interesse');
-  document.querySelectorAll('[data-interest]').forEach(a => a.addEventListener('click', () => {
-    interesse.value = a.dataset.interest;
-  }));
-
-  // Lightbox
-  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
-  const lbX = document.getElementById('lbX'), lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
-  const gallery = [...document.querySelectorAll('[data-g]')];
-  let last, group = [], idx = 0;
-  function render() {
-    const el = group[idx];
-    lbImg.src = el.dataset.lb;
-    lbImg.alt = el.dataset.cap || '';
-    lbCap.textContent = el.dataset.cap + (group.length > 1 ? ' · ' + (idx + 1) + ' / ' + group.length : '');
-  }
-  function open(el) {
-    last = el;
-    group = el.hasAttribute('data-g') ? gallery : [el];
-    idx = Math.max(0, group.indexOf(el));
-    lb.classList.toggle('single', group.length < 2);
-    lb.classList.toggle('plan', el.classList.contains('plate'));
-    render();
-    lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => lbX.focus());
-  }
-  function close() {
-    if (!lb.classList.contains('open')) return;
-    lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (last) last.focus();
-  }
-  const go = d => { if (group.length > 1) { idx = (idx + d + group.length) % group.length; render(); } };
-  document.querySelectorAll('[data-lb]').forEach(el => el.addEventListener('click', () => open(el)));
-  lbX.onclick = close;
-  lbPrev.onclick = () => go(-1);
-  lbNext.onclick = () => go(1);
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') go(1);
-    else if (e.key === 'ArrowLeft') go(-1);
-    else if (e.key === 'Tab') {
-      const f = [...lb.querySelectorAll('button')].filter(b => b.offsetParent !== null);
-      const i = f.indexOf(document.activeElement);
-      e.preventDefault();
-      f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
-    }
-  });
-})();
-</script>
+<script src="assets/lq.js"></script>
 
 </body>
 </html>
