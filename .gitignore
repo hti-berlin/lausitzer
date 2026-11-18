@@ -1,0 +1,7 @@
+.DS_Store
+.claude/
+# Gespeicherte Originalseite: nur die Bilder werden gebraucht
+Willkommen in Kreuzberg - Lausitzer Quartier.html
+Willkommen in Kreuzberg - Lausitzer Quartier_files/*
+!Willkommen in Kreuzberg - Lausitzer Quartier_files/*.jpg
+!Willkommen in Kreuzberg - Lausitzer Quartier_files/*.svg
